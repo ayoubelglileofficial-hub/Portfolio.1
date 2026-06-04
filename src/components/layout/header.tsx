@@ -1,34 +1,27 @@
-"use client"
+﻿"use client"
 
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import {
-  Bell,
-  Book,
+  Briefcase,
+  Code,
   GraduationCap,
-  LogOut,
+  Layers,
+  Mail,
   Menu,
   Moon,
-  Settings,
   Sun,
   User,
+  Zap,
+  X,
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
 import {
   Sheet,
   SheetContent,
@@ -36,328 +29,276 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import {
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-const components: { title: string; href: string; description: string }[] = [
-    {
-        title: "لوحة تحكم المدير ", // لوحة تحكم المدير  dashboard Admin
-        href: "/dashboard/Admin",
-        description: "ادارة المستخدمين و المواد و الاحصئيات العامة " // ادارة المستخدمين و المواد و الاحصئيات العامة  User Management, Materials, and General Statistics
-    },
-    {
-        title: "لوحة تحكم الدكتور ", // لوحة تحكم الدكتور  Professor dashboard
-        href: "/dashboard/Professor",
-        description: "ادارة المواد و الدرجات و الطلاب المسجلين " // ادارة المواد و الدرجات و الطلاب المسجلين  Course, Grade, and Enrolled Student Management
-    },
-    {
-        title: "لوحة تحكم الطالب ", // لوحة تحكم الطالب  Student dashboard
-        href: "/dashboard/Student",
-        description: "عرض الجدول و الدرجات و المواد المسجلة " // عرض الجدول و الدرجات و المواد المسجلة  View the schedule, grades, and enrolled courses
-    }
+
+const workLinks = [
+  {
+    title: "Skills",
+    href: "#skills",
+    description: "Technologies and tools I work with daily",
+    icon: Zap,
+  },
+  {
+    title: "Projects",
+    href: "#projects",
+    description: "Selected work and case studies",
+    icon: Layers,
+  },
+  {
+    title: "Experience",
+    href: "#experience",
+    description: "Professional journey and roles",
+    icon: Briefcase,
+  },
 ]
 
+const mainLinks = [
+  { title: "About", href: "#about", icon: User },
+  { title: "Education", href: "#education", icon: GraduationCap },
+  { title: "Contact Me", href: "#contact", icon: Mail },
+]
 
-const arabicPaths: Record<string, string> = {
-    dashboard: "لوحة التحكم",
-    admin: "المدير",
-    Professor: "الدكتور",
-    Student: "الطالب",
-    login: "تسجيل الدخول",
-    singin: "أنشاء حساب",
-    courses: "المواد",
-    settings: "الأعدادات",
-    profile: "البيانات الشخصية",
-    Notifications: "الأشعارات",
-}
-
-interface UserSession {
-    id: string;
-    email: string;
-    name: string;
-    role: 'admin' | 'professor' | 'student';
-
-}
 export function Header() {
-    const { setTheme, theme } = useTheme();
-    const pathname = usePathname();
-    const router = useRouter();
-    const [scrolled, setScrolled] = useState(false);
-    const [user, setUser] = useState<UserSession | null>(null);
-    useEffect(() => {
-        async function fetchUser() {
-            try {
-                const res = await fetch("/api/auth/me")
-                const data = await res.json()
-                if (data.success) {
-                    setUser(data.user)
-                }
-            } catch {
+  const { setTheme, theme } = useTheme()
+  const pathname = usePathname()
+  const [scrolled, setScrolled] = useState(false)
+  const [workOpen, setWorkOpen] = useState(false)
 
-            }
-        }
-        fetchUser()
-    }, [pathname])
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
-    const handleLogout = async () => {
-        await fetch("/api/auth/logout", { method: "POST" })
-        setUser(null)
-        router.push("/login")
-    }
+  return (
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full transition-all duration-300",
+        scrolled ? "glass shadow-sm py-2" : "bg-transparent py-4"
+      )}
+    >
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl text-md font-mono">
+        <div className="flex items-center justify-between h-14">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/logo.png"
+              alt="Portfolio Logo"
+              width={120}
+              height={40}
+              priority
+              className="h-8 sm:h-10 md:h-12 w-auto"
+            />
+          </Link>
 
-    const paths = pathname.split("/").filter(Boolean)
-    return (
-        <header className={cn(
-            "sticky top-0 z-50 w-full transition-all duration-300",
-            scrolled ? "glass shadow-sm py-2" : "bg-transparent py-4"
-        )}>
-            <div className="container mx-auto px-4">
-                <div className="flex items-center justify-between h-14">
-                    {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2 ml-8">
-                        <Image src="/logo.png" alt="Company Logo" width={120} height={40} priority className="h-20 w-auto"/>
-                    </Link>
-                    {/* Desktop navigation */}
-                    <div className="hidden md:flex flex-1 justify-center">
-                        <NavigationMenu>
-                            <NavigationMenuList>
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger>
-                                        {/* The Academy */}
-                                        الأكادمية
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <ul className="grid gap-3 p-6 md:w-100 lg:w-125 lg:grid-cols-[1fr_.75fr]">
-                                            <li className="row-span-3">
-                                                <NavigationMenu>
-                                                    <Link className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-indigo-500 to-purple-600 p-6 no-underline outline-none focus:shadow-md" href="/">
-                                                    <Book className="h-6 w-6 text-white"/>
-                                                        <div className="mb-2 mt-4 text-lg font-medium text-white">
-                                                            {/* Academic Excellence */}
-                                                            التميز الاكاديمي
-                                                        </div>
-                                                        <p className="text-sm leading-tight text-white/90">
-                                                        {/*  Discover our global programmes */}
-                                                            اكتشف برامجنا العالمية
-                                                        </p>
-                                                    </Link>
-                                                </NavigationMenu>
-                                            </li>
-                                            <ListItem href="/courses" title="البكالوريوس">
-                                            شهادات العلوم , الهندسة و الأدب
-                                            </ListItem>
-                                            <ListItem href="/Graduate" title="الدراسات العليا">
-                                            برنامج المتجيستير و الدكتورة
-                                            </ListItem>
-                                            <ListItem href="/Online" title="التعلم عن بعد">
-                                            خيارات مرنة للمهنيين
-                                            </ListItem>
-                                        </ul>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
-                                <NavigationMenuItem>
-                                    <NavigationMenuTrigger>
-                                        لوحات التحكم
-                                    </NavigationMenuTrigger>
-                                    <NavigationMenuContent>
-                                        <ul className="grid w-100 gap-3 p-4 md:w-125 md:grid-cols-2 lg:w-150">
-                                            {components.filter((component)=>{
-                                                if(!user) return false;
-                                                if(user.role === "admin") return true;
-                                                if(user.role === "professor") 
-                                                    return component.href === "/dashboard/Professor";
-                                                if(user.role === "student") 
-                                                    return component.href === "/dashboard/student";
-                                                return false;
-                                            })
-                                            .map((component)=>(
-                                                <ListItem key={component.title} title={component.title} href={component.href}>
-                                                    {component.description}
-                                            </ListItem>
-                                            ))}
-                                        </ul>
-                                    </NavigationMenuContent>
-                                </NavigationMenuItem>
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-1">
+            {/* About */}
+            <Link
+              href="#about"
+              className="px-4 py-2 font-medium rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              About
+            </Link>
 
-                                <NavigationMenuItem>
-                                    <NavigationMenuLink href="/campus" className={navigationMenuTriggerStyle()}>
-                                            الحياة الجامعية
-                                    </NavigationMenuLink>
-                                </NavigationMenuItem>
+            {/* Work Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setWorkOpen(!workOpen)}
+                className="px-4 py-2 font-medium rounded-md hover:bg-accent hover:text-accent-foreground transition-colors flex items-center gap-1"
+              >
+                Work
+                <svg
+                  className={cn(
+                    "h-4 w-4 transition-transform",
+                    workOpen && "rotate-180"
+                  )}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
 
-                            </NavigationMenuList>
-                        </NavigationMenu>
+              {workOpen && (
+                <>
+                  <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setWorkOpen(false)}
+                  />
+                  <div className="absolute right-0 top-full mt-2 z-50 w-80 rounded-xl border bg-popover p-4 shadow-lg">
+                    <div className="grid gap-2">
+                      {workLinks.map((link) => {
+                        const Icon = link.icon
+                        return (
+                          <Link
+                            key={link.href}
+                            href={link.href}
+                            onClick={() => setWorkOpen(false)}
+                            className="flex items-start gap-3 rounded-lg p-3 hover:bg-accent transition-colors"
+                          >
+                            <div className="mt-0.5 rounded-md bg-primary/10 p-2">
+                              <Icon className="h-4 w-4 text-primary" />
+                            </div>
+                            <div>
+                              <div className="font-medium">
+                                {link.title}
+                              </div>
+                              <p className="text-xs text-muted-foreground mt-0.5">
+                                {link.description}
+                              </p>
+                            </div>
+                          </Link>
+                        )
+                      })}
                     </div>
-                    {/* Right section: yheme and profil */}
-                    <div className="hidden md:flex items-center gap-4">
-                        <Button variant='ghost' size="icon" className="rounded-full" onClick={()=>setTheme(theme === "dark" ? "light" : "dark")}>
-                            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0  dark:rotate-0 dark:scale-100" />
-                            <span className="sr-only">
-                                تغيير الوضع
-                            </span>
-                        </Button>
-                        {user ?(
-                            <>
-                                <Link href="/notifications">
-                                        <Button variant="ghost" size="icon" className="rounded-full relative">
-                                            <Bell className="h-5 w-5"/>
-                                            <span className="absolute top-1 left-1 h-2 w-2 bg-red-500 rounded-full"></span>
-                                        </Button>
-                                </Link>
-                                <Link href="/profile" className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
-                                    <div className="bg-primary/10 p-2 rounded-full">
-                                        <User className="text-primary w-4 h-4"/>
-                                        <span className="font-medium">
-                                            {user.name}
-                                        </span>
-                                    </div>
-                                </Link>
-                                <Button variant="ghost" size="sm" onClick={handleLogout} className="text-destructive hover:text-destructive/80">
-                                    <LogOut className="h-4 w-4 ml-2"/>
-                                    {/* min 43:00 */}
-                                        تسجيل الخروج
-                                </Button>
-
-                            </>
-                        ):(
-                            <Link href="/login" className="text-sm font-medium hover:text-primary transition-colors">
-                                <Button variant="secondary" size="sm" className="rounded-full px-6">
-                                    تسجيل الدخول
-                                </Button>
-                            </Link>
-                        )}
-                    </div>
-                    {/* mobile taggele */}
-                    <div className="md:hidden flex items-center gap-4">
-                        <Button variant="ghost" size="icon" onClick={()=>setTheme(theme === "dark" ? "light" : "dark")
-                        }>
-                            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                            <Moon className="h-5 w-5 absolute rotate-90 scale-0  dark:rotate-0 dark:scale-100" /> 
-                        </Button>
-                        <Sheet>
-                            <SheetTrigger asChild>
-                                <Button variant="ghost" size="icon">
-                                    <Menu className="h-6 w-6 "/>
-                                </Button>
-                            </SheetTrigger>
-                            <SheetContent side="left" className="w-75 sm:w-100">
-                                <SheetHeader>
-                                    <SheetTitle className="text-right flex items-center gap-2">
-                                        <GraduationCap className="h-6 w-6 text-primary">
-                                            قائمة ums
-                                        </GraduationCap>
-                                    </SheetTitle>
-                                </SheetHeader>
-                                <div className="grid -gap-6 py-8">
-                                    {user &&(
-                                        <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-                                            <div className="bg-primary/10 p-2 rounded-full">
-                                                <User className="text-primary w-5 h-5"/>
-                                            </div>
-                                            <div className="font-medium">
-                                                <p>{user.name}</p>
-                                                <p className="text-xs text-muted-foreground">{user.email}</p>
-                                            </div>
-                                        </div>
-                                    )}
-                                    <div className="grid gap-2 ">
-                                        <h3>لوحة التحكم</h3>
-                                        {components.filter((component)=>{
-                                                if(!user) return false;
-                                                if(user.role === "admin") return true;
-                                                if(user.role === "professor") 
-                                                    return component.href === "/dashboard/Professor";
-                                                if(user.role === "student") 
-                                                    return component.href === "/dashboard/student";
-                                                return false;
-                                            })
-                                            .map((component)=>(
-                                                <ListItem key={component.title} title={component.title} href={component.href}>
-                                                    {component.description}
-                                            </ListItem>
-                                            ))}
-                                    </div>
-                                    <div className="grid gap-2 ">
-                                        <h3 >الحساب</h3>
-                                        {user ?(
-                            <>
-                                <Link href="/settings" className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
-                                            <Settings className=" w-4 h-4"/>
-                                            الأعدادات
-                                        </Link>
-                                        {/*  */}
-                                <Button variant="ghost" size="sm" onClick={handleLogout} className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
-                                    <LogOut className=" w-4 h-4"/>
-                                    {/* min 43:00 */}
-                                        تسجيل الخروج
-                                </Button>
-
-                            </>
-                        ):(
-                            <Link href="/login" className="flex items-center gap-2 text-sm hover:text-primary transition-colors">
-                                <User className=" w-4 h-4"/>
-                                    تسجيل الدخول
-                                
-                            </Link>
-                        )}
-                                    </div>
-                                </div>
-                            </SheetContent>
-                        </Sheet>
-                    </div>
-                </div>
-                    {
-                        paths.map((path, index)=>{
-                            const href = "/" + paths.slice(0, index + 1).join("/");
-                            const isLast = index === paths.length - 1;
-                            const title = arabicPaths[path] || 
-                            path.charAt(0).toUpperCase() + path.slice(1);
-
-                            return(<>
-                            <React.Fragment key={href}>
-                                <BreadcrumbSeparator className="mx-2 text-muted-foreground"/>
-                                <BreadcrumbItem>
-                                    {isLast ? (
-                                        <BreadcrumbPage>
-                                            {title}
-                                        </BreadcrumbPage>
-                                    ) : (
-                                        <BreadcrumbLink href={href} >
-                                            {title}
-                                        </BreadcrumbLink>
-                                    )}
-                                </BreadcrumbItem>
-                            </React.Fragment>
-                            </>)
-                            
-                        }
-                    )}
+                  </div>
+                </>
+              )}
             </div>
-        </header>
-    );
-}
 
-const ListItem = React.forwardRef<
-    React.ElementRef<"a">,
-    React.ComponentPropsWithoutRef<"a">
->(({className, title, children, ...props}, ref)=>{
-    return(
-        <li>
-            <NavigationMenuLink asChild>
-                <a ref={ref} className={cn(
-                    "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-                    className
-                )}
-                {...props}>
-                    <div className="text-sm font-medium leading-none">{title}</div>
-                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
-                </a>
-            </NavigationMenuLink>
-        </li>
-    )
-})
-ListItem.displayName = "ListItem"
+            {/* Education */}
+            <Link
+              href="#education"
+              className="px-4 py-2 font-medium rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              Education
+            </Link>
+
+            {/* Contact Me */}
+            <Link
+              href="#contact"
+              className="px-4 py-2 font-medium rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              Contact Me
+            </Link>
+          </nav>
+
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center gap-3">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+            <Link href="#contact">
+              <Button
+                size="sm"
+                className="rounded-full px-6 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white"
+              >
+                Hire Me
+              </Button>
+            </Link>
+          </div>
+
+          {/* Mobile */}
+          <div className="md:hidden flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-5 w-5 rotate-90 scale-0 dark:rotate-0 dark:scale-100" />
+            </Button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-80">
+                <SheetHeader>
+                  <SheetTitle className="flex items-center gap-2">
+                    <Code className="h-5 w-5 text-primary" />
+                    Menu
+                  </SheetTitle>
+                </SheetHeader>
+                <div className="grid gap-6 py-8">
+                  <div className="grid gap-1">
+                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                      Navigation
+                    </h3>
+                    
+                    {/* About */}
+                    <Link
+                      href="#about"
+                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 font-medium hover:bg-accent transition-colors"
+                    >
+                      <User className="h-4 w-4 text-muted-foreground" />
+                      About
+                    </Link>
+
+                    {/* Work section with sub-items */}
+                    <div className="px-3 py-2">
+                      <div className="flex items-center gap-3 font-medium mb-1">
+                        <Briefcase className="h-4 w-4 text-muted-foreground" />
+                        Work
+                      </div>
+                      <div className="ml-7 grid gap-1">
+                        {workLinks.map((link) => {
+                          const Icon = link.icon
+                          return (
+                            <Link
+                              key={link.href}
+                              href={link.href}
+                              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
+                            >
+                              <Icon className="h-3.5 w-3.5" />
+                              {link.title}
+                            </Link>
+                          )
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Education */}
+                    <Link
+                      href="#education"
+                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 font-medium hover:bg-accent transition-colors"
+                    >
+                      <GraduationCap className="h-4 w-4 text-muted-foreground" />
+                      Education
+                    </Link>
+
+                    {/* Contact Me */}
+                    <Link
+                      href="#contact"
+                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 font-medium hover:bg-accent transition-colors"
+                    >
+                      <Mail className="h-4 w-4 text-muted-foreground" />
+                      Contact Me
+                    </Link>
+                  </div>
+                  <div className="grid gap-1">
+                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                      Action
+                    </h3>
+                    <Link
+                      href="#contact"
+                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 font-medium hover:bg-accent transition-colors"
+                    >
+                      <Mail className="h-4 w-4 text-muted-foreground" />
+                      Hire Me
+                    </Link>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
+      </div>
+    </header>
+  )
+}
