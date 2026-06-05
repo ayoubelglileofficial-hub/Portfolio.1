@@ -17,6 +17,8 @@ const profileData = {
     bio_1: 'Passionate developer with expertise in building modern web applications...',
     bio_2: 'With over 5 years of experience in the industry...',
     bio_3: "When I'm not coding, I enjoy contributing to open-source projects...",
+    
+    isVisible: true,   // ← NEW: Profile visible by default
 
     // All sections visible by default
     show_experience: true,

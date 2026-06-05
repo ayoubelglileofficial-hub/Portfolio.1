@@ -14,6 +14,7 @@ export interface Profile {
     bio_1: string;
     bio_2: string;
     bio_3: string;
+    isVisible: boolean;        // ← NEW
     created_at: string;
     updated_at: string;
 }
