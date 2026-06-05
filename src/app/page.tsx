@@ -1,12 +1,28 @@
 ﻿export const dynamic = 'force-dynamic'; // ← MUST be in the page file
 export const revalidate = 0;              // ← MUST be in the page file
 
+import connectDB from '@/lib/mongodb';
+import Profile from '@/models/Profile';
 import Profil from '@/components/layout/Profil';
+import ProfileVisibilityToggle from '@/components/ProfileVisibilityToggle';
 
-export default function Home() {
+export default async function Home() {
+  await connectDB();
+  const profil = await Profile.findOne({ _id: 'prof_001' }).lean();
+  const isVisible = profil
+    ? profil.isVisible === true || profil.isVisible === 'true'
+    : true;
+
   return (
     <main>
-      <Profil />
+      <div className="flex flex-col gap-6">
+        <ProfileVisibilityToggle
+          key={String(isVisible)}
+          initialValue={isVisible}
+          className="self-end"
+        />
+        <Profil />
+      </div>
     </main>
   );
 }

@@ -23,13 +23,18 @@ export async function PATCH(request: Request) {
     try {
         await connectDB();
         const body = await request.json();
+        const updateBody = {
+            ...body,
+            updated_at: new Date(),
+        };
+
+        if (typeof updateBody.isVisible === 'string') {
+            updateBody.isVisible = updateBody.isVisible === 'true';
+        }
 
         const updatedProfile = await Profile.findOneAndUpdate(
             { _id: 'prof_001' },
-            { 
-                ...body,
-                updated_at: new Date() 
-            },
+            updateBody,
             { new: true, runValidators: true }
         ).lean();
 

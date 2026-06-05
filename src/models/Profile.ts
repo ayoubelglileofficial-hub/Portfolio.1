@@ -1,7 +1,6 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IProfile extends Document {
-    _id: string;
     full_name: string;
     title: string;
     short_bio: string;
@@ -21,7 +20,7 @@ export interface IProfile extends Document {
     updated_at: Date;
 }
 
-const ProfileSchema = new Schema<IProfile>({
+const ProfileSchema = new Schema({
     _id: { type: String, default: 'prof_001' },
     full_name: { type: String, required: true },
     title: { type: String, required: true },

@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Profile } from "@/types/profile";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface ProfileVisibilityToggleProps {
-    initialValue?: boolean;
+    initialValue?: boolean | string;
     onToggle?: (isVisible: boolean) => void;
     className?: string;
 }
@@ -14,13 +14,15 @@ export default function ProfileVisibilityToggle({
     onToggle,
     className = "",
 }: ProfileVisibilityToggleProps) {
-    const [isVisible, setIsVisible] = useState(initialValue);
+    const router = useRouter();
+    const normalizedInitialValue =
+        initialValue === 'false'
+            ? false
+            : initialValue === 'true'
+            ? true
+            : Boolean(initialValue);
+    const [isVisible, setIsVisible] = useState(normalizedInitialValue);
     const [isLoading, setIsLoading] = useState(false);
-
-    // Sync with external initial value
-    useEffect(() => {
-        setIsVisible(initialValue);
-    }, [initialValue]);
 
     const handleToggle = async () => {
         const newValue = !isVisible;
@@ -38,6 +40,7 @@ export default function ProfileVisibilityToggle({
             if (!res.ok) throw new Error("Failed to update visibility");
 
             onToggle?.(newValue);
+            router.refresh();
         } catch (error) {
             console.error("Error updating visibility:", error);
             // Revert on error

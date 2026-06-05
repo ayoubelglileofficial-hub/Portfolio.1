@@ -6,11 +6,11 @@ import Profile from "@/models/Profile";
 export default async function Profil() {
   await connectDB();
   const profil = await Profile.findOne({ _id: "prof_001" }).lean();
+  const isVisible = profil
+    ? profil.isVisible === true || profil.isVisible === 'true'
+    : true;
 
-  const isVisible = profil?.isVisible;
-console.log('Profile visibility:', isVisible);
-  if (isVisible === false) {
-    console.log('Profile visibilityy:', isVisible);
+  if (!profil || !isVisible) {
     return null;
   }
 
