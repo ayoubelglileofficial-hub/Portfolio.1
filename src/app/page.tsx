@@ -1,15 +1,14 @@
-﻿// import CanvasBackground from "@/components/layout/CanvasBackground";
-import { GitBranchPlus, Globe, Link, Mail, MapPin, Phone } from "lucide-react";
+﻿import { GitBranchPlus, Globe, Link, Mail, MapPin, Phone } from "lucide-react";
 import UniversalImage from "@/components/ui/universal-image";
+import connectDB from "@/lib/mongodb";
+import Profile from "@/models/Profile";
 
 export default async function Home() {
-  const res = await fetch("http://localhost:3001/profile", {
-    cache: "no-store",
-  });
-  const profil = await res.json();
+  await connectDB();
+  const profil = await Profile.findOne({ _id: "prof_001" }).lean();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center w-full font-mono ">
-      {/* <CanvasBackground /> */}
+    <div className="flex flex-col flex-1 items-center justify-center w-full font-mono">
       <div className="w-11/12 bg-muted/60 rounded-xl border border-zinc-200 p-8 flex flex-col items-center justify-center dark:border-transparent">
         {/* Profil info */}
         <div className="pt-14 pb-6 px-6 text-center">
@@ -18,7 +17,7 @@ export default async function Home() {
           </h2>
           <p className="text-5xl text-blue-600 dark:text-blue-400 font-medium mt-1">
             <span className="border-2 px-4 rounded-xl border-amber-50/50">
-              Full Stack
+              {profil.title}
             </span>{" "}
             Developer
           </p>
@@ -38,30 +37,30 @@ export default async function Home() {
         </div>
 
         {/* Bio o Contact فنفس container مطلقين */}
-        <div className=" inset-0 pointer-events-none">
+        <div className="inset-0 pointer-events-none">
           {/* Bio 1 - فاليسار */}
-          <div className=" top-110 left-71 bg-accent p-6 pb-4 border-3 rounded-xl w-[500px] rotate-[1.5deg] animate-float-45 pointer-events-auto">
+          <div className="top-110 left-71 bg-accent p-6 pb-4 border-3 rounded-xl w-[500px] rotate-[1.5deg] animate-float-45 pointer-events-auto">
             <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed text-center">
               {profil.bio_1}
             </p>
           </div>
 
           {/* Bio 2 - فاليسار تحت */}
-          <div className=" top-170 left-71 bg-accent p-6 pb-4 border-3 rounded-xl w-[500px] rotate-[1.5deg] animate-float-45 pointer-events-auto">
+          <div className="top-170 left-71 bg-accent p-6 pb-4 border-3 rounded-xl w-[500px] rotate-[1.5deg] animate-float-45 pointer-events-auto">
             <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed text-center">
               {profil.bio_2}
             </p>
           </div>
 
           {/* Bio 3 - فاليمين */}
-          <div className=" right-4 top-10 bg-accent p-6 pb-4 border-3 rounded-xl w-[500px] rotate-[1.5deg] animate-float-45 pointer-events-auto">
+          <div className="right-4 top-10 bg-accent p-6 pb-4 border-3 rounded-xl w-[500px] rotate-[1.5deg] animate-float-45 pointer-events-auto">
             <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed text-center">
               {profil.bio_3}
             </p>
           </div>
 
           {/* Contact - فاليمين تحت */}
-          <div className=" right-4 top-60 bg-accent p-6 pb-4 border-3 rounded-xl w-[500px] rotate-[1.5deg] animate-float-45 pointer-events-auto">
+          <div className="right-4 top-60 bg-accent p-6 pb-4 border-3 rounded-xl w-[500px] rotate-[1.5deg] animate-float-45 pointer-events-auto">
             <div className="flex items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
               <Mail className="w-4 h-4 text-zinc-400" />
               <span>{profil.email}</span>
@@ -108,3 +107,23 @@ export default async function Home() {
     </div>
   );
 }
+
+
+
+// import connectDB from "@/lib/mongodb";
+// import Profile from "@/models/Profile";
+// import ToggleProfile from "@/components/layout/Profil";
+
+// export default async function Home() {
+//     await connectDB();
+//     const profil = await Profile.findOne({ _id: "prof_001" }).lean();
+
+//     return (
+//         <div className="flex flex-col flex-1 items-center justify-center w-full font-mono">
+//             <div className="w-11/12 bg-muted/60 rounded-xl border border-zinc-200 p-8 flex flex-col items-center justify-center dark:border-transparent">
+//                 {/* Toggle checkbox - controls visibility of profile content */}
+//                 <ToggleProfile profil={profil} />
+//             </div>
+//         </div>
+//     );
+// }

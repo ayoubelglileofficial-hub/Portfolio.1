@@ -1,0 +1,577 @@
+{
+  "profile": {
+    "_id": "prof_001",
+    "full_name": "Your Name",
+    "title": "Full Stack Developer",
+    "short_bio": "Building digital experiences that matter.",
+    "email": "your.email@example.com",
+    "phone": "+1 234 567 890",
+    "location": "Your City, Country",
+    "avatar_url": "https://tse4.mm.bing.net/th/id/OIP.audMX4ZGbvT2_GJTx2c4GgHaHw?cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "website_logo": "https://tse4.mm.bing.net/th/id/OIP.audMX4ZGbvT2_GJTx2c4GgHaHw?cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "github_url": "https://github.com/yourusername",
+    "linkedin_url": "https://linkedin.com/in/yourusername",
+    "website_url": "https://yourportfolio.com",
+    "created_at": "2024-01-01T00:00:00Z",
+    "updated_at": "2024-06-01T00:00:00Z",
+    "bio_1": "Passionate developer with expertise in building modern web applications. I specialize in creating responsive, user-friendly interfaces and robust backend systems.",
+    "bio_2": "With over 5 years of experience in the industry, I have worked with startups and established companies to deliver scalable solutions that drive business growth.",
+    "bio_3": "When I'm not coding, I enjoy contributing to open-source projects, mentoring junior developers, and staying up-to-date with the latest tech trends."
+  },
+  "resumes": [
+    {
+      "_id": "res_001",
+      "profile_id": "prof_001",
+      "language_code": "en",
+      "language_name": "English",
+      "file_url": "/resumes/cv_en.pdf",
+      "file_name": "CV - English",
+      "is_default": true,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-06-01T00:00:00Z"
+    },
+    {
+      "_id": "res_002",
+      "profile_id": "prof_001",
+      "language_code": "fr",
+      "language_name": "Français",
+      "file_url": "/resumes/cv_fr.pdf",
+      "file_name": "CV - Français",
+      "is_default": false,
+      "created_at": "2024-01-01T00:00:00Z",
+      "updated_at": "2024-06-01T00:00:00Z"
+    }
+  ],
+  "social_links": [
+    {
+      "_id": "soc_001",
+      "platform": "github",
+      "url": "https://github.com/yourusername",
+      "icon": "Github",
+      "order_index": 1,
+      "is_active": true
+    },
+    {
+      "_id": "soc_002",
+      "platform": "linkedin",
+      "url": "https://linkedin.com/in/yourusername",
+      "icon": "Linkedin",
+      "order_index": 2,
+      "is_active": true
+    },
+    {
+      "_id": "soc_003",
+      "platform": "twitter",
+      "url": "https://twitter.com/yourusername",
+      "icon": "Twitter",
+      "order_index": 3,
+      "is_active": true
+    },
+    {
+      "_id": "soc_004",
+      "platform": "dribbble",
+      "url": "https://dribbble.com/yourusername",
+      "icon": "Dribbble",
+      "order_index": 4,
+      "is_active": false
+    }
+  ],
+  "experiences": [
+    {
+      "_id": "exp_001",
+      "company_name": "TechCorp Inc.",
+      "role_title": "Senior Full Stack Developer",
+      "description": "Led a team of 5 developers in building a SaaS platform serving 10k+ users. Implemented CI/CD pipelines reducing deployment time by 60%. Migrated legacy codebase to Next.js improving performance by 40%.",
+      "location": "Remote",
+      "start_date": "2022-03-01",
+      "end_date": null,
+      "is_current": true,
+      "employment_type": "full_time",
+      "order_index": 1,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "exp_002",
+      "company_name": "StartupXYZ",
+      "role_title": "Frontend Developer",
+      "description": "Built responsive React components for e-commerce platform. Integrated payment gateways (Stripe, PayPal). Optimized site performance achieving 95+ Lighthouse score.",
+      "location": "New York, USA",
+      "start_date": "2020-06-01",
+      "end_date": "2022-02-28",
+      "is_current": false,
+      "employment_type": "full_time",
+      "order_index": 2,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "exp_003",
+      "company_name": "Freelance",
+      "role_title": "Web Developer",
+      "description": "Delivered 15+ websites for small businesses and startups. Technologies: React, Node.js, MongoDB, WordPress. Maintained 100% client satisfaction rate.",
+      "location": "Remote",
+      "start_date": "2019-01-01",
+      "end_date": "2020-05-31",
+      "is_current": false,
+      "employment_type": "freelance",
+      "order_index": 3,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "projects": [
+    {
+      "_id": "proj_001",
+      "title": "E-Commerce Dashboard",
+      "slug": "ecommerce-dashboard",
+      "description": "A comprehensive analytics dashboard for e-commerce businesses. Features real-time sales tracking, inventory management, customer insights, and automated reporting. Built with performance and scalability in mind.",
+      "short_description": "Real-time analytics dashboard for online stores",
+      "thumbnail_url": "/images/projects/ecommerce-dashboard.jpg",
+      "live_url": "https://demo-ecommerce-dashboard.vercel.app",
+      "repo_url": "https://github.com/yourusername/ecommerce-dashboard",
+      "category": "web",
+      "featured": true,
+      "status": "completed",
+      "start_date": "2023-06-01",
+      "completion_date": "2023-09-15",
+      "order_index": 1,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "proj_002",
+      "title": "Task Management App",
+      "slug": "task-management-app",
+      "description": "Collaborative task management tool with real-time updates, drag-and-drop kanban boards, team chat, and time tracking. Supports multiple workspaces and role-based access control.",
+      "short_description": "Collaborative project management with real-time features",
+      "thumbnail_url": "/images/projects/task-app.jpg",
+      "live_url": "https://taskapp-demo.vercel.app",
+      "repo_url": "https://github.com/yourusername/task-management",
+      "category": "web",
+      "featured": true,
+      "status": "completed",
+      "start_date": "2023-01-10",
+      "completion_date": "2023-05-20",
+      "order_index": 2,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "proj_003",
+      "title": "AI Content Generator",
+      "slug": "ai-content-generator",
+      "description": "AI-powered content generation platform using OpenAI API. Features blog post generation, social media captions, SEO optimization suggestions, and content scheduling.",
+      "short_description": "AI-powered tool for generating marketing content",
+      "thumbnail_url": "/images/projects/ai-content.jpg",
+      "live_url": "https://ai-content-demo.vercel.app",
+      "repo_url": "https://github.com/yourusername/ai-content-gen",
+      "category": "web",
+      "featured": false,
+      "status": "in_progress",
+      "start_date": "2024-01-15",
+      "completion_date": null,
+      "order_index": 3,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "proj_004",
+      "title": "Fitness Tracker Mobile App",
+      "slug": "fitness-tracker",
+      "description": "Cross-platform mobile app for tracking workouts, nutrition, and progress. Features include workout plans, calorie counter, progress photos, and social sharing.",
+      "short_description": "Mobile fitness companion with workout tracking",
+      "thumbnail_url": "/images/projects/fitness-app.jpg",
+      "live_url": null,
+      "repo_url": "https://github.com/yourusername/fitness-tracker",
+      "category": "mobile",
+      "featured": false,
+      "status": "completed",
+      "start_date": "2022-08-01",
+      "completion_date": "2023-02-28",
+      "order_index": 4,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "project_technologies": [
+    {
+      "project_id": "proj_001",
+      "technology_id": "skill_001"
+    },
+    {
+      "project_id": "proj_001",
+      "technology_id": "skill_003"
+    },
+    {
+      "project_id": "proj_001",
+      "technology_id": "skill_005"
+    },
+    {
+      "project_id": "proj_001",
+      "technology_id": "skill_009"
+    },
+    {
+      "project_id": "proj_002",
+      "technology_id": "skill_001"
+    },
+    {
+      "project_id": "proj_002",
+      "technology_id": "skill_003"
+    },
+    {
+      "project_id": "proj_002",
+      "technology_id": "skill_007"
+    },
+    {
+      "project_id": "proj_002",
+      "technology_id": "skill_010"
+    },
+    {
+      "project_id": "proj_003",
+      "technology_id": "skill_001"
+    },
+    {
+      "project_id": "proj_003",
+      "technology_id": "skill_003"
+    },
+    {
+      "project_id": "proj_003",
+      "technology_id": "skill_006"
+    },
+    {
+      "project_id": "proj_003",
+      "technology_id": "skill_011"
+    },
+    {
+      "project_id": "proj_004",
+      "technology_id": "skill_012"
+    },
+    {
+      "project_id": "proj_004",
+      "technology_id": "skill_013"
+    }
+  ],
+  "project_images": [
+    {
+      "_id": "img_001",
+      "project_id": "proj_001",
+      "image_url": "/images/projects/ecommerce-1.jpg",
+      "caption": "Dashboard Overview",
+      "order_index": 1,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "img_002",
+      "project_id": "proj_001",
+      "image_url": "/images/projects/ecommerce-2.jpg",
+      "caption": "Sales Analytics",
+      "order_index": 2,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "img_003",
+      "project_id": "proj_002",
+      "image_url": "/images/projects/taskapp-1.jpg",
+      "caption": "Kanban Board",
+      "order_index": 1,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "services": [
+    {
+      "_id": "serv_001",
+      "title": "Web Development",
+      "slug": "web-development",
+      "description": "Custom websites and web applications built with modern technologies. From landing pages to complex SaaS platforms, I deliver scalable and performant solutions tailored to your business needs.",
+      "icon": "Globe",
+      "is_active": true,
+      "order_index": 1,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "serv_002",
+      "title": "Mobile App Development",
+      "slug": "mobile-app-development",
+      "description": "Cross-platform mobile applications using React Native and Flutter. I build intuitive, fast, and reliable apps for iOS and Android that provide excellent user experiences.",
+      "icon": "Smartphone",
+      "is_active": true,
+      "order_index": 2,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "serv_003",
+      "title": "API Development",
+      "slug": "api-development",
+      "description": "RESTful and GraphQL APIs designed for performance and scalability. I create well-documented, secure APIs that power your applications and integrate seamlessly with third-party services.",
+      "icon": "Server",
+      "is_active": true,
+      "order_index": 3,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "serv_004",
+      "title": "UI/UX Design",
+      "slug": "ui-ux-design",
+      "description": "User-centered design that combines aesthetics with functionality. I create wireframes, prototypes, and high-fidelity designs that ensure intuitive navigation and delightful user experiences.",
+      "icon": "Palette",
+      "is_active": true,
+      "order_index": 4,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "serv_005",
+      "title": "Code Review & Consulting",
+      "slug": "code-review-consulting",
+      "description": "Expert code review and technical consulting to improve your codebase quality, performance, and maintainability. I help teams adopt best practices and modern development workflows.",
+      "icon": "Code2",
+      "is_active": true,
+      "order_index": 5,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "skills": [
+    {
+      "_id": "skill_001",
+      "name": "React",
+      "slug": "react",
+      "category": "frontend",
+      "length_of_experience": "4 years",
+      "icon": "react",
+      "color": "#61DAFB",
+      "is_highlighted": true,
+      "order_index": 1,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_002",
+      "name": "Next.js",
+      "slug": "nextjs",
+      "category": "frontend",
+      "length_of_experience": "3 years",
+      "icon": "nextjs",
+      "color": "#000000",
+      "is_highlighted": true,
+      "order_index": 2,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_003",
+      "name": "TypeScript",
+      "slug": "typescript",
+      "category": "frontend",
+      "length_of_experience": "3 years",
+      "icon": "typescript",
+      "color": "#3178C6",
+      "is_highlighted": true,
+      "order_index": 3,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_004",
+      "name": "Tailwind CSS",
+      "slug": "tailwind-css",
+      "category": "frontend",
+      "length_of_experience": "3 years",
+      "icon": "tailwind",
+      "color": "#06B6D4",
+      "is_highlighted": true,
+      "order_index": 4,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_005",
+      "name": "Node.js",
+      "slug": "nodejs",
+      "category": "backend",
+      "length_of_experience": "4 years",
+      "icon": "nodejs",
+      "color": "#339933",
+      "is_highlighted": true,
+      "order_index": 5,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_006",
+      "name": "Python",
+      "slug": "python",
+      "category": "backend",
+      "length_of_experience": "3 years",
+      "icon": "python",
+      "color": "#3776AB",
+      "is_highlighted": true,
+      "order_index": 6,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_007",
+      "name": "MongoDB",
+      "slug": "mongodb",
+      "category": "database",
+      "length_of_experience": "3 years",
+      "icon": "mongodb",
+      "color": "#47A248",
+      "is_highlighted": true,
+      "order_index": 7,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_008",
+      "name": "PostgreSQL",
+      "slug": "postgresql",
+      "category": "database",
+      "length_of_experience": "2 years",
+      "icon": "postgresql",
+      "color": "#4169E1",
+      "is_highlighted": false,
+      "order_index": 8,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_009",
+      "name": "Docker",
+      "slug": "docker",
+      "category": "devops",
+      "length_of_experience": "2 years",
+      "icon": "docker",
+      "color": "#2496ED",
+      "is_highlighted": false,
+      "order_index": 9,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_010",
+      "name": "AWS",
+      "slug": "aws",
+      "category": "devops",
+      "length_of_experience": "2 years",
+      "icon": "aws",
+      "color": "#FF9900",
+      "is_highlighted": false,
+      "order_index": 10,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_011",
+      "name": "Git",
+      "slug": "git",
+      "category": "tools",
+      "length_of_experience": "5 years",
+      "icon": "git",
+      "color": "#F05032",
+      "is_highlighted": false,
+      "order_index": 11,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_012",
+      "name": "Figma",
+      "slug": "figma",
+      "category": "tools",
+      "length_of_experience": "3 years",
+      "icon": "figma",
+      "color": "#F24E1E",
+      "is_highlighted": false,
+      "order_index": 12,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_013",
+      "name": "React Native",
+      "slug": "react-native",
+      "category": "frontend",
+      "length_of_experience": "2 years",
+      "icon": "react",
+      "color": "#61DAFB",
+      "is_highlighted": false,
+      "order_index": 13,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_014",
+      "name": "Problem Solving",
+      "slug": "problem-solving",
+      "category": "soft_skills",
+      "length_of_experience": "5+ years",
+      "icon": "Brain",
+      "color": "#8B5CF6",
+      "is_highlighted": false,
+      "order_index": 14,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_015",
+      "name": "English",
+      "slug": "english",
+      "category": "language",
+      "length_of_experience": "Fluent",
+      "icon": "Languages",
+      "color": "#10B981",
+      "is_highlighted": false,
+      "order_index": 15,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "skill_016",
+      "name": "French",
+      "slug": "french",
+      "category": "language",
+      "length_of_experience": "Conversational",
+      "icon": "Languages",
+      "color": "#3B82F6",
+      "is_highlighted": false,
+      "order_index": 16,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "testimonials": [
+    {
+      "_id": "test_001",
+      "client_name": "Sarah Johnson",
+      "client_role": "CEO",
+      "client_company": "TechStart Inc.",
+      "content": "Working with this developer was an absolute pleasure. They delivered our platform ahead of schedule and the code quality exceeded our expectations. Highly recommended!",
+      "avatar_url": "/images/testimonials/sarah.jpg",
+      "rating": 5,
+      "is_approved": true,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "test_002",
+      "client_name": "Michael Chen",
+      "client_role": "Product Manager",
+      "client_company": "Digital Solutions LLC",
+      "content": "Exceptional technical skills combined with great communication. They understood our requirements perfectly and suggested improvements we hadn't considered.",
+      "avatar_url": "/images/testimonials/michael.jpg",
+      "rating": 5,
+      "is_approved": true,
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "_id": "test_003",
+      "client_name": "Emily Rodriguez",
+      "client_role": "Founder",
+      "client_company": "GreenLeaf Co.",
+      "content": "Our e-commerce site performs 3x faster after the redesign. Sales increased by 40% in the first month. Best investment we've made.",
+      "avatar_url": "/images/testimonials/emily.jpg",
+      "rating": 5,
+      "is_approved": true,
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "education": [
+    {
+      "_id": "edu_001",
+      "institution": "University of Technology",
+      "degree": "Bachelor of Science",
+      "field_of_study": "Computer Science",
+      "start_date": "2016-09-01",
+      "end_date": "2020-06-30",
+      "description": "Specialized in Software Engineering and Artificial Intelligence. Graduated with honors (GPA: 3.8/4.0).",
+      "order_index": 1
+    },
+    {
+      "_id": "edu_002",
+      "institution": "Online Academy",
+      "degree": "Professional Certificate",
+      "field_of_study": "Full Stack Web Development",
+      "start_date": "2020-07-01",
+      "end_date": "2020-12-31",
+      "description": "Intensive bootcamp covering MERN stack, system design, and deployment strategies.",
+      "order_index": 2
+    }
+  ]
+}
