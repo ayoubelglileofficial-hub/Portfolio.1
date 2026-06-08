@@ -194,7 +194,7 @@ export function Header() {
             <Link href="#contact">
               <Button
                 size="sm"
-                className="rounded-full px-6 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white"
+                className="rounded-full px-6 bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white"
               >
                 Hire Me
               </Button>

@@ -5,7 +5,6 @@ import connectDB from '@/lib/mongodb';
 import Profile from '@/models/Profile';
 import Profil from '@/components/layout/Profil';
 import ProfileVisibilityToggle from '@/components/ProfileVisibilityToggle';
-
 export default async function Home() {
   await connectDB();
   const profil = await Profile.findOne({ _id: 'prof_001' }).lean();
@@ -22,6 +21,7 @@ export default async function Home() {
           className="self-end"
         />
         <Profil />
+
       </div>
     </main>
   );
