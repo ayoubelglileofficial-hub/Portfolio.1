@@ -72,8 +72,8 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300",
-        scrolled ? "glass shadow-sm py-2" : "bg-transparent py-4"
+        "sticky top-0 z-40 w-full transition-all duration-300",
+        scrolled ? "glass shadow-sm py-2 bg-muted" : "bg-transparent py-4"
       )}
     >
       <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl text-md font-mono">
@@ -128,10 +128,10 @@ export function Header() {
               {workOpen && (
                 <>
                   <div
-                    className="fixed inset-0 z-40"
+                    className="fixed inset-0  z-10"
                     onClick={() => setWorkOpen(false)}
                   />
-                  <div className="absolute right-0 top-full mt-2 z-50 w-80 rounded-xl border bg-popover p-4 shadow-lg">
+                  <div className="absolute right-0 top-full mt-2  w-80 rounded-xl border bg-popover p-4 shadow-lg">
                     <div className="grid gap-2">
                       {workLinks.map((link) => {
                         const Icon = link.icon
@@ -187,8 +187,8 @@ export function Header() {
               className="rounded-full"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             >
-              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 dark:rotate-0 dark:scale-100" />
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-yellow-500" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 dark:rotate-0 dark:scale-100 text-blue-500" />
               <span className="sr-only">Toggle theme</span>
             </Button>
             <Link href="#contact">
@@ -202,11 +202,11 @@ export function Header() {
           </div>
 
           {/* Mobile */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-3 font-mono">
             <Button
               variant="ghost"
               size="icon"
-              className="rounded-full"
+              className="rounded-full h-10 w-10"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             >
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -214,27 +214,29 @@ export function Header() {
             </Button>
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="h-10 w-10">
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-80">
-                <SheetHeader>
-                  <SheetTitle className="flex items-center gap-2">
+              <SheetContent side="right" className="w-80 p-0">
+                <SheetHeader className="px-6 pt-6 pb-4 border-b">
+                  <SheetTitle className="flex items-center gap-3 text-lg">
                     <Code className="h-5 w-5 text-primary" />
                     Menu
                   </SheetTitle>
                 </SheetHeader>
-                <div className="grid gap-6 py-8">
-                  <div className="grid gap-1">
-                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                
+                <div className="flex flex-col gap-6 px-6 py-6">
+                  {/* Navigation Section */}
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1 px-1">
                       Navigation
                     </h3>
                     
                     {/* About */}
                     <Link
                       href="#about"
-                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 font-medium hover:bg-accent transition-colors"
+                      className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors"
                     >
                       <User className="h-4 w-4 text-muted-foreground" />
                       About
@@ -242,18 +244,18 @@ export function Header() {
 
                     {/* Work section with sub-items */}
                     <div className="px-3 py-2">
-                      <div className="flex items-center gap-3 font-medium mb-1">
+                      <div className="flex items-center gap-3 font-medium mb-2">
                         <Briefcase className="h-4 w-4 text-muted-foreground" />
                         Work
                       </div>
-                      <div className="ml-7 grid gap-1">
+                      <div className="ml-7 flex flex-col gap-1">
                         {workLinks.map((link) => {
                           const Icon = link.icon
                           return (
                             <Link
                               key={link.href}
                               href={link.href}
-                              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
+                              className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
                             >
                               <Icon className="h-3.5 w-3.5" />
                               {link.title}
@@ -266,7 +268,7 @@ export function Header() {
                     {/* Education */}
                     <Link
                       href="#education"
-                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 font-medium hover:bg-accent transition-colors"
+                      className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors"
                     >
                       <GraduationCap className="h-4 w-4 text-muted-foreground" />
                       Education
@@ -275,19 +277,24 @@ export function Header() {
                     {/* Contact Me */}
                     <Link
                       href="#contact"
-                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 font-medium hover:bg-accent transition-colors"
+                      className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors"
                     >
                       <Mail className="h-4 w-4 text-muted-foreground" />
                       Contact Me
                     </Link>
                   </div>
-                  <div className="grid gap-1">
-                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+
+                  {/* Divider */}
+                  <div className="h-px bg-border" />
+
+                  {/* Action Section */}
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1 px-1">
                       Action
                     </h3>
                     <Link
                       href="#contact"
-                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 font-medium hover:bg-accent transition-colors"
+                      className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors"
                     >
                       <Mail className="h-4 w-4 text-muted-foreground" />
                       Hire Me
