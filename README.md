@@ -72,8 +72,10 @@ Read [](file:///c%3A/Users/12500031/Desktop/Portfolio/next.config.ts)
 
 ### **Project Name:** UMS (Portfolio)
 
-### **Overview**    analyse that project and give me a resume about it
---- A modern, full-stack portfolio website built with **Next.js 16** and **MongoDB**. The application showcases a developer's profile with real-time data management capabilities, including a profile visibility toggle feature that allows users to show/hide their profile from the public.
+### **Overview**
+- A modern, full-stack portfolio website built with **Next.js 16** and **MongoDB**.
+- The app centers on a single dynamic profile that can be displayed publicly, hidden from visitors, and edited by an admin through the dashboard.
+- Public data is read from MongoDB in real time, while admin actions persist changes through authenticated API routes and server actions.
 
 ---
 
@@ -203,7 +205,41 @@ npm run lint     # Run ESLint
 - Canvas background for visual appeal
 - Accessible toggle component with loading states
 
+## **Profil Part**
 
+The Profil part is the core of the homepage and is built around one fixed MongoDB document with the id `prof_001`.
+
+### **What it shows**
+- Full name, title, and short bio in the hero area
+- A large avatar image loaded through the shared image component
+- Three longer bio blocks used as the main written content of the profile
+- Contact details for email, phone, and location
+- External links for GitHub, LinkedIn, and the personal website
+
+### **How it works**
+- `src/components/layout/Profil.tsx` connects to MongoDB, reads the profile document, and renders the page only when the profile exists and `isVisible` is enabled.
+- `src/app/page.tsx` fetches the same profile document on the home page and shows admin controls only when the session role is `admin`.
+- `src/components/ProfileVisibilityToggle.tsx` updates the `isVisible` flag through `PATCH /api/profile`, then refreshes the route so the public view updates immediately.
+- `src/app/api/profile/route.ts` keeps `GET` public for reading profile data and protects `PATCH` with session authentication.
+
+### **Admin editing flow**
+- `src/components/layout/ProfileModal.tsx` provides the edit form for profile fields, links, and images.
+- The modal validates required fields, checks email/phone/URL formats, limits bio length, and sanitizes text before submission.
+- Image uploads are sent through `/api/upload`, then the saved URLs are written back to the profile.
+- `src/app/api/profile/actions.ts` persists changes and revalidates `/` and `/admin/profile` so the UI stays in sync.
+
+### **Stored profile fields**
+- Identity: `full_name`, `title`, `short_bio`
+- Contact: `email`, `phone`, `location`
+- Media: `avatar_url`, `website_logo`
+- Links: `github_url`, `linkedin_url`, `website_url`
+- Content blocks: `bio_1`, `bio_2`, `bio_3`
+- State: `isVisible`, `created_at`, `updated_at`
+
+### **Behavior notes**
+- If the profile is missing or hidden, the public component returns `null`.
+- The visibility toggle supports both boolean and string values because the code normalizes legacy data.
+- The profile editor is built for one record only, so the whole section behaves like a personal landing page rather than a multi-user profile system.
 
 
 

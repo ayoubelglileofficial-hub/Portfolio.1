@@ -72,6 +72,12 @@ export async function GET() {
     }
 }
 
+const ALLOWED_FIELDS = [
+    'full_name', 'title', 'short_bio', 'email', 'phone', 'location',
+    'avatar_url', 'website_logo', 'github_url', 'linkedin_url', 'website_url',
+    'bio_1', 'bio_2', 'bio_3', 'isVisible',
+];
+
 // PATCH 
 export async function PATCH(request: NextRequest) {  
     try {
@@ -82,10 +88,12 @@ export async function PATCH(request: NextRequest) {
 
         await connectDB();
         const body = await request.json();
-        const updateBody = {
-            ...body,
-            updated_at: new Date(),
-        };
+        const updateBody: Record<string, unknown> = { updated_at: new Date() };
+        for (const field of ALLOWED_FIELDS) {
+            if (field in body) {
+                updateBody[field] = body[field];
+            }
+        }
 
         if (typeof updateBody.isVisible === 'string') {
             updateBody.isVisible = updateBody.isVisible === 'true';

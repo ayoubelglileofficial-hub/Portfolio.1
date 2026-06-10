@@ -23,7 +23,7 @@ export default async function Profil() {
         {/* Profil info */}
         <div className="pt-14 pb-6 px-6 text-center">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 dark:text-white">
-            I'm {profil.full_name}
+            I&apos;m {profil.full_name}
           </h2>
           <p className="text-3xl md:text-4xl lg:text-5xl text-blue-600 dark:text-blue-400 font-medium mt-1">
             <span className="border-2 px-4 mx-0 rounded-xl border-blue-400 dark:border-amber-50/50">

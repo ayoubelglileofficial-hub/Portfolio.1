@@ -9,11 +9,3 @@ export async function POST() {
   
   return NextResponse.json({ success: true, message: "Logged out successfully" })
 }
-
-// Also support GET for direct link logout
-export async function GET() {
-  const cookieStore = await cookies()
-  cookieStore.delete("auth_session")
-  
-  return NextResponse.redirect(new URL("/", process.env.NEXT_PUBLIC_WEB_ADDRESS || "http://localhost:3000"))
-}

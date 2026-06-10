@@ -17,11 +17,11 @@ export default function UniversalImage({ src, alt = "", fill, sizes, className, 
   // Use next/image for http(s) sources; fallback to native img for data URLs and others
   if (isHttp && !isData) {
     if (fill) {
-      // @ts-ignore - pass-through props to next/image
-      return <Image src={src} alt={alt} fill className={className} sizes={sizes} {...(rest as any)} />
+      // @ts-expect-error - pass-through props to next/image
+      return <Image src={src} alt={alt} fill className={className} sizes={sizes} {...rest} />
     }
-    // @ts-ignore
-    return <Image src={src} alt={alt} className={className} sizes={sizes} {...(rest as any)} />
+    // @ts-expect-error - pass-through props to next/image
+    return <Image src={src} alt={alt} className={className} sizes={sizes} {...rest} />
   }
 
   if (fill) {

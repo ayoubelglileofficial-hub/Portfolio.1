@@ -22,7 +22,7 @@ export async function createSession(email: string, role: string) {
     cookieStore.set(SESSION_TOKEN, sessionValue, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        sameSite: 'strict',
         maxAge: 60 * 60 * 24, // 1 day
         path: '/',
     });
@@ -56,8 +56,8 @@ export function isAuthenticated(request: NextRequest): boolean {
 }
 
 // secureAPI Routes
-export function protectRoute(handler: Function) {
-    return async (request: NextRequest, context: any) => {
+export function protectRoute(handler: (...args: unknown[]) => unknown) {
+    return async (request: NextRequest, context: unknown) => {
         if (!isAuthenticated(request)) {
             return NextResponse.json(
                 { error: 'Unauthorized' },

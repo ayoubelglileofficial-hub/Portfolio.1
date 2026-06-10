@@ -3,14 +3,20 @@
 import { revalidatePath } from 'next/cache';
 import dbConnect from '@/lib/mongodb';
 import Profile from '@/models/Profile';
+import { getSessionData } from '@/lib/auth';
 
 export async function updateProfile(formData: FormData) {
   try {
+    const session = await getSessionData();
+    if (!session || session.role !== 'admin') {
+      return { success: false, message: 'Non autorisé' };
+    }
+
     await dbConnect();
 
     const profileId = 'prof_001'; // Ton ID fixe
 
-    const updateData: Record<string, any> = {
+    const updateData: Record<string, unknown> = {
       full_name: formData.get('full_name'),
       title: formData.get('title'),
       short_bio: formData.get('short_bio'),
