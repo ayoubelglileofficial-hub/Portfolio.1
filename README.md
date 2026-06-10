@@ -172,7 +172,7 @@ src/
 - `full_name`, `title`, `short_bio`: Basic info
 - `email`, `phone`, `location`: Contact details
 - `avatar_url`, `website_logo`: Image URLs
-- `github_url`, `linkedin_url`, `website_url`: Social links
+- `github_url`, `linkedin_url`: Social links
 - `bio_1`, `bio_2`, `bio_3`: Floating bio sections
 - `isVisible`: Boolean flag to control profile visibility
 - `created_at`, `updated_at`: Timestamps
@@ -232,7 +232,7 @@ The Profil part is the core of the homepage and is built around one fixed MongoD
 - Identity: `full_name`, `title`, `short_bio`
 - Contact: `email`, `phone`, `location`
 - Media: `avatar_url`, `website_logo`
-- Links: `github_url`, `linkedin_url`, `website_url`
+- Links: `github_url`, `linkedin_url`
 - Content blocks: `bio_1`, `bio_2`, `bio_3`
 - State: `isVisible`, `created_at`, `updated_at`
 

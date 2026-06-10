@@ -11,7 +11,6 @@ export interface IProfile extends Document {
     website_logo: string;
     github_url: string;
     linkedin_url: string;
-    website_url: string;
     bio_1: string;
     bio_2: string;
     bio_3: string;
@@ -32,7 +31,6 @@ const ProfileSchema = new Schema({
     website_logo: { type: String, default: '' },
     github_url: { type: String, default: '' },
     linkedin_url: { type: String, default: '' },
-    website_url: { type: String, default: '' },
     bio_1: { type: String, default: '' },
     bio_2: { type: String, default: '' },
     bio_3: { type: String, default: '' },

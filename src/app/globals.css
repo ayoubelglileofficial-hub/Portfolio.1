@@ -256,11 +256,29 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 .WebsiteColor {
-  color: #4ae26b;
+  color: #0d972b;
 }
 .WebsiteColor:hover {
   color: white;
-  background-color:#4ae26b;
+  background-color:#0d972b;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.EmailColor {
+  color: #c71610;
+}
+.EmailColor:hover {
+  color: white;
+  background-color:#c71610;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.ContactColor {
+  color: var(--accent);
+  background-color: #1ad141;
+  shadow: 0 4px 6px rgba(26, 209, 65, 0.3);
+}
+.ContactColor:hover {
+  color: #1ad141;
+  background-color:var(--accent);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 

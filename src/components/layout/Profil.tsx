@@ -5,6 +5,8 @@ import Profile from "@/models/Profile";
 import { LinkedIn } from "@deemlol/next-icons"
 import { GitHub } from "@deemlol/next-icons"
 import { WhatsApp } from "@deemlol/next-icons"
+import { Email } from "@deemlol/next-icons"
+
 export default async function Profil() {
   await connectDB();
   const profil = await Profile.findOne({ _id: "prof_001" }).lean();
@@ -18,7 +20,7 @@ export default async function Profil() {
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center w-full font-mono">
-      <div className="w-11/12 bg-muted/60 rounded-xl border border-zinc-200 p-8 xl:p-4 2xl:p-8 flex flex-col items-center justify-between xl:min-h-[81vh] 2xl:min-h-[85vh] dark:border-transparent">
+      <div className="w-11/12 bg-muted/60 rounded-xl border border-zinc-200 p-8 xl:p-2 2xl:p-8 flex flex-col items-center justify-between xl:min-h-[81vh] 2xl:min-h-[85vh] dark:border-transparent">
 
         {/* Profil info */}
         <div className="pt-14 pb-6 px-6 text-center">
@@ -45,6 +47,48 @@ export default async function Profil() {
             className="object-cover"
             sizes="(max-width: 640px) 192px, (max-width: 768px) 224px, (max-width: 1024px) 256px, (max-width: 1280px) 288px, 288px"
           />
+        </div>
+
+        {/* Social links */}
+        <div className="px-6 pb-6 pt-6 xl:pt-0 flex justify-center gap-4">
+          <a
+            href={profil.github_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="GitHubColor px-2.5 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+          >
+            <GitHub className="w-5 h-5" />
+          </a>
+          <a
+            href={profil.linkedin_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="LinkedInColor px-2.5 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+          >
+            <LinkedIn className="w-5 h-5" />
+          </a>
+          <a
+              href={`https://wa.me/${(profil.phone || "").replace(/\D/g, "").replace(/^0/, "212")}?text=${encodeURIComponent("Hi Ayoub, I'm here to help you")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="WebsiteColor px-2.5 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+            >
+              <WhatsApp className="w-5 h-5" />
+            </a>
+            <a
+              href={`mailto:${profil.email}?subject=${encodeURIComponent("Help Request")}&body=${encodeURIComponent("Hi Ayoub,\n\nI'm reaching out to help you.\n\nBest regards")}`}
+              className="EmailColor px-2.5 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+            >
+              <Mail className="w-5 h-5" />
+            </a>
+            {/* Hire me botton */}
+            <a
+              href="#contact"
+              // href={`mailto:${profil.email}?subject=${encodeURIComponent("Hiring Inquiry")}&body=${encodeURIComponent("Hi Ayoub,\n\nI'm interested in hiring you for a project. Please let me know your availability and rates.\n\nBest regards")}`}
+              className="ContactColor px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+            >
+              Hire Me
+            </a>
         </div>
 
         {/* Bio & Contact - Phone/Tablet: column, Desktop: absolute positioning */}
@@ -90,33 +134,6 @@ export default async function Profil() {
           </div>
         </div>
 
-        {/* Social links */}
-        <div className="px-6 pb-6 pt-6 xl:pt-0 flex justify-center gap-4">
-          <a
-            href={profil.github_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="GitHubColor p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-          >
-            <GitHub className="w-5 h-5" />
-          </a>
-          <a
-            href={profil.linkedin_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="LinkedInColor p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-          >
-            <LinkedIn className="w-5 h-5" />
-          </a>
-          <a
-            href={profil.website_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="WebsiteColor p-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-          >
-            <Globe className="w-5 h-5" />
-          </a>
-        </div>
       </div>
     </div>
   );

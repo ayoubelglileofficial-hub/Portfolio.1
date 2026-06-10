@@ -25,7 +25,6 @@ export async function updateProfile(formData: FormData) {
       location: formData.get('location') || '',
       github_url: formData.get('github_url') || '',
       linkedin_url: formData.get('linkedin_url') || '',
-      website_url: formData.get('website_url') || '',
       bio_1: formData.get('bio_1') || '',
       bio_2: formData.get('bio_2') || '',
       bio_3: formData.get('bio_3') || '',
