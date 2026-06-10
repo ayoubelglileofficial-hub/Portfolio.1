@@ -4,7 +4,7 @@ import connectDB from "@/lib/mongodb";
 import Profile from "@/models/Profile";
 import { LinkedIn } from "@deemlol/next-icons"
 import { GitHub } from "@deemlol/next-icons"
-
+import { WhatsApp } from "@deemlol/next-icons"
 export default async function Profil() {
   await connectDB();
   const profil = await Profile.findOne({ _id: "prof_001" }).lean();
@@ -48,7 +48,7 @@ export default async function Profil() {
         </div>
 
         {/* Bio & Contact - Phone/Tablet: column, Desktop: absolute positioning */}
-        <div className="flex flex-col xl:flex-row items-center justify-between w-full xl:w-[82%] xl:absolute xl:inset-0 xl:pointer-events-none mt-6 xl:mt-30 xl:ml-30 2xl:mt-30">
+        <div className="flex flex-col xl:flex-row items-center justify-between w-full xl:w-[82%] xl:absolute xl:inset-0 xl:pointer-events-none mt-6 xl:mt-30 xl:ml-30 2xl:mt-55">
 
           {/* Bio left side */}
           <div className="flex flex-col space-y-6 xl:space-y-10 w-full xl:w-auto items-center xl:items-start">

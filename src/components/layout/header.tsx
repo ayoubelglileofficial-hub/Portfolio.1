@@ -57,11 +57,18 @@ const mainLinks = [
   { title: "Contact Me", href: "#contact", icon: Mail },
 ]
 
-export function Header() {
+interface HeaderProps {
+  logoUrl: string
+}
+// export function Header() {
+export function Header({ logoUrl }: HeaderProps) {
+
   const { setTheme, theme } = useTheme()
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [workOpen, setWorkOpen] = useState(false)
+
+  
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -81,7 +88,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/logo.png"
+              src={logoUrl}        // ← use the prop here
               alt="Portfolio Logo"
               width={120}
               height={40}
