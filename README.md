@@ -56,9 +56,190 @@ Full command:
 ```bash
 npm install clsx tailwind-merge class-variance-authority lucide-react framer-motion react-hook-form zod @hookform/resolvers next-themes sonner swr date-fns mongoose bcrypt recharts
 
+Searched codebase for "project purpose components features API routes database schema", no results
 
+Read [](file:///c%3A/Users/12500031/Desktop/Portfolio/README.md#1-1), lines 1 to 50
 
+Read [](file:///c%3A/Users/12500031/Desktop/Portfolio/package.json)
 
+Read [](file:///c%3A/Users/12500031/Desktop/Portfolio/src)
+
+Read [](file:///c%3A/Users/12500031/Desktop/Portfolio/next.config.ts)
+
+---
+
+## **Project Resume**
+
+### **Project Name:** UMS (Portfolio)
+
+### **Overview**
+- A modern, full-stack portfolio website built with **Next.js 16** and **MongoDB**.
+- The app centers on a single dynamic profile that can be displayed publicly, hidden from visitors, and edited by an admin through the dashboard.
+- Public data is read from MongoDB in real time, while admin actions persist changes through authenticated API routes and server actions.
+
+---
+
+### **Tech Stack**
+
+**Frontend:**
+- **Next.js 16.2.4** (React 19.2.4) with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS v4** with PostCSS for styling
+- **Framer Motion** for smooth animations
+- **Radix UI** for accessible components
+- **shadcn** for pre-built UI components
+- **Lucide React** for icon library
+- **React Hook Form** + **Zod** for form handling & validation
+
+**Backend:**
+- **Next.js API Routes** (serverless endpoints)
+- **MongoDB** with **Mongoose** ODM for data persistence
+- **bcrypt** for password hashing
+
+**Developer Experience:**
+- **ESLint** for code linting
+- **React Compiler** (Babel plugin) for optimizations
+- **SWR** for data fetching and caching
+- **Sonner** for toast notifications
+- **Next Themes** for dark mode support
+
+---
+
+### **Key Features**
+
+1. **Dynamic Profile Display**
+   - Server-rendered profile component that pulls data from MongoDB
+   - Customizable bio sections, social links, and contact information
+   - Avatar image with fallback support
+
+2. **Profile Visibility Control**
+   - Client-side toggle switch to show/hide the entire profile
+   - Real-time database updates via API
+   - State persists in MongoDB Atlas
+   - Smooth page refresh after visibility changes
+
+3. **Responsive Design**
+   - Mobile-first approach with Tailwind breakpoints
+   - Canvas animated background with particles and lines
+   - Floating animated bio cards
+
+4. **Dark Mode Support**
+   - Theme switching via Next Themes
+   - Persisted theme preference
+
+5. **API Endpoints**
+   - `GET /api/profile` - Fetch profile data
+   - `PATCH /api/profile` - Update profile fields (including visibility)
+
+---
+
+### **Project Structure**
+
+```
+src/
+├── app/                          # Next.js App Router
+│   ├── page.tsx                  # Home page (renders profile + visibility toggle)
+│   ├── layout.tsx                # Root layout with theme provider
+│   ├── globals.css               # Global styles
+│   └── api/profile/route.ts       # Profile API (GET, PATCH)
+├── components/
+│   ├── layout/                   
+│   │   ├── header.tsx            # Navigation header
+│   │   └── Profil.tsx            # Server component for profile rendering
+│   ├── ui/                       # Reusable UI components (buttons, cards, dialogs, etc.)
+│   ├── CanvasBackground.tsx      # Animated particle/line background
+│   ├── ProfileVisibilityToggle.tsx # Client-side toggle switch
+│   └── theme-provider.tsx        # Theme wrapper
+├── models/
+│   └── Profile.ts                # Mongoose schema for profile data
+├── types/
+│   └── profile.ts                # TypeScript interfaces
+├── hooks/
+│   └── useProfile.ts             # Custom hook for fetching profile via SWR
+├── lib/
+│   ├── mongodb.ts                # MongoDB connection handler
+│   └── utils.ts                  # Utility functions
+└── scripts/
+    └── seed.ts                   # Database seeding script
+```
+
+---
+
+### **Database Schema**
+
+**Profile Model** (MongoDB):
+- `_id`: Custom string ID (default: `'prof_001'`)
+- `full_name`, `title`, `short_bio`: Basic info
+- `email`, `phone`, `location`: Contact details
+- `avatar_url`, `website_logo`: Image URLs
+- `github_url`, `linkedin_url`, `website_url`: Social links
+- `bio_1`, `bio_2`, `bio_3`: Floating bio sections
+- `isVisible`: Boolean flag to control profile visibility
+- `created_at`, `updated_at`: Timestamps
+
+---
+
+### **Recent Fixes Applied**
+1. ✅ Profile visibility toggle now properly updates and persists in MongoDB
+2. ✅ Page refreshes after visibility changes
+3. ✅ Boolean/string type normalization across API, page, and components
+4. ✅ Checkbox validation errors resolved
+5. ✅ Build system now compiles successfully
+
+---
+
+### **Scripts Available**
+```bash
+npm run dev      # Start development server (localhost:3000)
+npm run build    # Production build
+npm start        # Run production server
+npm run lint     # Run ESLint
+```
+
+---
+
+### **Notable Implementation Details**
+- Uses `force-dynamic` + `revalidate: 0` for real-time profile data
+- Server-side rendering for profile with client-side toggle
+- Debounced API updates with error handling and rollback
+- Canvas background for visual appeal
+- Accessible toggle component with loading states
+
+## **Profil Part**
+
+The Profil part is the core of the homepage and is built around one fixed MongoDB document with the id `prof_001`.
+
+### **What it shows**
+- Full name, title, and short bio in the hero area
+- A large avatar image loaded through the shared image component
+- Three longer bio blocks used as the main written content of the profile
+- Contact details for email, phone, and location
+- External links for GitHub, LinkedIn, and the personal website
+
+### **How it works**
+- `src/components/layout/Profil.tsx` connects to MongoDB, reads the profile document, and renders the page only when the profile exists and `isVisible` is enabled.
+- `src/app/page.tsx` fetches the same profile document on the home page and shows admin controls only when the session role is `admin`.
+- `src/components/ProfileVisibilityToggle.tsx` updates the `isVisible` flag through `PATCH /api/profile`, then refreshes the route so the public view updates immediately.
+- `src/app/api/profile/route.ts` keeps `GET` public for reading profile data and protects `PATCH` with session authentication.
+
+### **Admin editing flow**
+- `src/components/layout/ProfileModal.tsx` provides the edit form for profile fields, links, and images.
+- The modal validates required fields, checks email/phone/URL formats, limits bio length, and sanitizes text before submission.
+- Image uploads are sent through `/api/upload`, then the saved URLs are written back to the profile.
+- `src/app/api/profile/actions.ts` persists changes and revalidates `/` and `/admin/profile` so the UI stays in sync.
+
+### **Stored profile fields**
+- Identity: `full_name`, `title`, `short_bio`
+- Contact: `email`, `phone`, `location`
+- Media: `avatar_url`, `website_logo`
+- Links: `github_url`, `linkedin_url`, `website_url`
+- Content blocks: `bio_1`, `bio_2`, `bio_3`
+- State: `isVisible`, `created_at`, `updated_at`
+
+### **Behavior notes**
+- If the profile is missing or hidden, the public component returns `null`.
+- The visibility toggle supports both boolean and string values because the code normalizes legacy data.
+- The profile editor is built for one record only, so the whole section behaves like a personal landing page rather than a multi-user profile system.
 
 
 

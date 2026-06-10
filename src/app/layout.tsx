@@ -1,9 +1,12 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
+import { cookies } from "next/headers"
 import "./globals.css"
 import { Header } from "@/components/layout/header"
 import { ThemeProvider } from "@/components/theme-provider"
 import CanvasBackground from "@/components/CanvasBackground"
+import HeaderAdmin from "@/components/layout/HeaderAdmin"
+import { Toaster } from "@/components/ui/sonner"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,15 +19,18 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "ums",
-  description: "ums",
+  title: "Ayoub El-Glile - Portfolio",
+  description: "Portfolio",
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const sessionValue = (await cookies()).get('auth_session')?.value || '';
+  const isAdmin = sessionValue.split('|')[1] === 'admin';
+
   return (
     <html
       lang="en"
@@ -32,7 +38,6 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col relative">
-        {/* Canvas Background - fixed behind everything */}
         <div className="fixed inset-0 -z-10">
           <CanvasBackground
             particleCount={60}
@@ -42,10 +47,12 @@ export default function RootLayout({
             backgroundColor="transparent"
           />
         </div>
-
         <ThemeProvider>
+          <Toaster />
+          {isAdmin && <HeaderAdmin />}
           <Header />
           <main className="flex-1 w-full max-w-350 mx-auto px-4 md:px-6 py-6 relative z-10">
+            
             {children}
           </main>
         </ThemeProvider>

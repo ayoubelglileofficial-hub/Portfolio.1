@@ -237,3 +237,41 @@
     @apply font-sans;
   }
 }
+
+
+.GitHubColor {
+  color: orange;
+}
+.GitHubColor:hover {
+  color: white;
+  background-color:orange;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.LinkedInColor {
+  color: #0077b5;
+}
+.LinkedInColor:hover {
+  color: white;
+  background-color:#0077b5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.WebsiteColor {
+  color: #4ae26b;
+}
+.WebsiteColor:hover {
+  color: white;
+  background-color:#4ae26b;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (min-width: 1280px) {
+
+/* i will make that animation to aniamationInfo */
+@keyframes CarteAnimation {
+0%, 100% { transform: translateY(5px)  }
+  50% { transform: translateX(5px)  }
+}
+
+.animationInfo {
+  animation: CarteAnimation 2s ease-in-out infinite;
+}}
