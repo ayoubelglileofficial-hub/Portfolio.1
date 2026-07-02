@@ -14,7 +14,8 @@ export interface IProfile extends Document {
     bio_1: string;
     bio_2: string;
     bio_3: string;
-    isVisible: boolean;        // ← NEW
+    isVisible: boolean;
+    show_skills: boolean;
     created_at: Date;
     updated_at: Date;
 }
@@ -34,7 +35,8 @@ const ProfileSchema = new Schema({
     bio_1: { type: String, default: '' },
     bio_2: { type: String, default: '' },
     bio_3: { type: String, default: '' },
-    isVisible: { type: Boolean, default: true },  
+    isVisible: { type: Boolean, default: true },
+    show_skills: { type: Boolean, default: true },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
 });

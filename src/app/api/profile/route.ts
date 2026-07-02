@@ -75,7 +75,7 @@ export async function GET() {
 const ALLOWED_FIELDS = [
     'full_name', 'title', 'short_bio', 'email', 'phone', 'location',
     'avatar_url', 'website_logo', 'github_url', 'linkedin_url',
-    'bio_1', 'bio_2', 'bio_3', 'isVisible',
+    'bio_1', 'bio_2', 'bio_3', 'isVisible', 'show_skills',
 ];
 
 // PATCH 
