@@ -98,6 +98,9 @@ export async function PATCH(request: NextRequest) {
         if (typeof updateBody.isVisible === 'string') {
             updateBody.isVisible = updateBody.isVisible === 'true';
         }
+        if (typeof updateBody.show_skills === 'string') {
+            updateBody.show_skills = updateBody.show_skills === 'true';
+        }
 
         const updatedProfile = await Profile.findOneAndUpdate(
             { _id: 'prof_001' },

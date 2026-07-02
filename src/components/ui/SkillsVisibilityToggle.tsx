@@ -21,12 +21,12 @@ export default function SkillsVisibilityToggle({
             : initialValue === 'true'
             ? true
             : Boolean(initialValue);
-    const [isVisible, setIsVisible] = useState(normalizedInitialValue);
+    const [showSkills, setShowSkills] = useState(normalizedInitialValue);
     const [isLoading, setIsLoading] = useState(false);
 
     const handleToggle = async () => {
-        const newValue = !isVisible;
-        setIsVisible(newValue);
+        const newValue = !showSkills;
+        setShowSkills(newValue);
 
         setIsLoading(true);
         try {
@@ -42,7 +42,7 @@ export default function SkillsVisibilityToggle({
             router.refresh();
         } catch (error) {
             console.error("Error updating skills visibility:", error);
-            setIsVisible(!newValue);
+            setShowSkills(!newValue);
         } finally {
             setIsLoading(false);
         }
@@ -55,7 +55,7 @@ export default function SkillsVisibilityToggle({
             <div className="relative">
                 <input
                     type="checkbox"
-                    checked={isVisible}
+                    checked={showSkills}
                     onChange={handleToggle}
                     disabled={isLoading}
                     className="sr-only peer"
@@ -74,7 +74,7 @@ export default function SkillsVisibilityToggle({
                 ></div>
             </div>
             <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                {isVisible ? "Skills Visible" : "Skills Hidden"}
+                {showSkills ? "Skills Visible" : "Skills Hidden"}
             </span>
             {isLoading && <span className="text-xs text-zinc-500">Saving...</span>}
         </label>

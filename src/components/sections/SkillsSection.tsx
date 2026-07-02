@@ -34,7 +34,11 @@ const categoryOrder = [
   "language",
 ];
 
-export default async function SkillsSection() {
+interface SkillsSectionProps {
+  hidden?: boolean;
+}
+
+export default async function SkillsSection({ hidden }: SkillsSectionProps) {
   await connectDB();
   const skills = await Skill.find().sort({ order_index: 1 }).lean();
 
@@ -51,10 +55,10 @@ export default async function SkillsSection() {
 
   return (
     <section id="skills" className="flex flex-col items-center w-full font-mono scroll-mt-20">
-      <div className="w-11/12 bg-muted/60 rounded-xl border border-zinc-200 dark:border-transparent p-8">
+      <div className={`w-11/12 rounded-xl border p-8 ${hidden ? 'bg-red-500/5 border-red-200 dark:border-red-900/50' : 'bg-muted/60 border-zinc-200 dark:border-transparent'}`}>
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">
-            Skills
+          <h2 className={`text-3xl md:text-4xl font-bold ${hidden ? 'text-red-500' : 'text-zinc-900 dark:text-white'}`}>
+            {hidden ? 'Skills (Hidden)' : 'Skills'}
           </h2>
           <p className="text-zinc-500 dark:text-zinc-400 mt-2 text-sm">
             Technologies and tools I work with
