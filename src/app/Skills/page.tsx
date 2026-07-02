@@ -33,7 +33,7 @@ export default async function Skills() {
           </div>
         )}
 
-        <SkillsSection hidden={!showSkills} />
+        <SkillsSection hidden={!showSkills} isAdmin={isAdmin} />
       </div>
     </main>
   );

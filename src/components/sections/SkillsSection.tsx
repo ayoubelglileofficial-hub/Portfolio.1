@@ -36,15 +36,17 @@ const categoryOrder = [
 
 interface SkillsSectionProps {
   hidden?: boolean;
+  isAdmin?: boolean;
 }
 
-export default async function SkillsSection({ hidden }: SkillsSectionProps) {
+export default async function SkillsSection({ hidden, isAdmin }: SkillsSectionProps) {
   await connectDB();
   const skills = await Skill.find().sort({ order_index: 1 }).lean();
 
-  if (!skills || skills.length === 0) {
-    return null;
-  }
+  if (!skills || skills.length === 0) return null;
+  if (hidden && !isAdmin) return null;
+
+  const preview = hidden && isAdmin;
 
   const grouped: Record<string, SkillDoc[]> = {};
   for (const skill of skills as SkillDoc[]) {
@@ -55,10 +57,10 @@ export default async function SkillsSection({ hidden }: SkillsSectionProps) {
 
   return (
     <section id="skills" className="flex flex-col items-center w-full font-mono scroll-mt-20">
-      <div className={`w-11/12 rounded-xl border p-8 ${hidden ? 'bg-red-500/5 border-red-200 dark:border-red-900/50' : 'bg-muted/60 border-zinc-200 dark:border-transparent'}`}>
+      <div className={`w-11/12 rounded-xl border p-8 ${preview ? 'bg-red-500/5 border-red-200 dark:border-red-900/50' : 'bg-muted/60 border-zinc-200 dark:border-transparent'}`}>
         <div className="text-center mb-10">
-          <h2 className={`text-3xl md:text-4xl font-bold ${hidden ? 'text-red-500' : 'text-zinc-900 dark:text-white'}`}>
-            {hidden ? 'Skills (Hidden)' : 'Skills'}
+          <h2 className={`text-3xl md:text-4xl font-bold ${preview ? 'text-red-500' : 'text-zinc-900 dark:text-white'}`}>
+            {preview ? 'Skills (Hidden)' : 'Skills'}
           </h2>
           <p className="text-zinc-500 dark:text-zinc-400 mt-2 text-sm">
             Technologies and tools I work with
@@ -75,19 +77,13 @@ export default async function SkillsSection({ hidden }: SkillsSectionProps) {
                     className="inline-block w-1 h-5 rounded-full"
                     style={{
                       backgroundColor:
-                        cat === "frontend"
-                          ? "#3b82f6"
-                          : cat === "backend"
-                          ? "#22c55e"
-                          : cat === "database"
-                          ? "#a855f7"
-                          : cat === "devops"
-                          ? "#f97316"
-                          : cat === "tools"
-                          ? "#06b6d4"
-                          : cat === "soft_skills"
-                          ? "#ec4899"
-                          : "#8b5cf6",
+                        cat === "frontend" ? "#3b82f6" :
+                        cat === "backend" ? "#22c55e" :
+                        cat === "database" ? "#a855f7" :
+                        cat === "devops" ? "#f97316" :
+                        cat === "tools" ? "#06b6d4" :
+                        cat === "soft_skills" ? "#ec4899" :
+                        "#8b5cf6",
                     }}
                   />
                   {categoryLabels[cat] || cat}

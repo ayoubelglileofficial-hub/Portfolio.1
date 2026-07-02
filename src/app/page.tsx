@@ -37,7 +37,7 @@ export default async function Home() {
           </div>
         )}
 
-        <Profil />
+        <Profil hidden={!isVisible} isAdmin={isAdmin} />
 
         <div className="flex items-center justify-end w-full">
           {isAdmin && (
@@ -51,28 +51,8 @@ export default async function Home() {
           )}
         </div>
 
-        <SkillsSection hidden={!showSkills} />
+        <SkillsSection hidden={!showSkills} isAdmin={isAdmin} />
       </div>
     </main>
   );
 }
-
-
-
-// import connectDB from "@/lib/mongodb";
-// import Profile from "@/models/Profile";
-// import ToggleProfile from "@/components/layout/Profil";
-
-// export default async function Home() {
-//     await connectDB();
-//     const profil = await Profile.findOne({ _id: "prof_001" }).lean();
-
-//     return (
-//         <div className="flex flex-col flex-1 items-center justify-center w-full font-mono">
-//             <div className="w-11/12 bg-muted/60 rounded-xl border border-zinc-200 p-8 flex flex-col items-center justify-center dark:border-transparent">
-//                 {/* Toggle checkbox - controls visibility of profile content */}
-//                 <ToggleProfile profil={profil} />
-//             </div>
-//         </div>
-//     );
-// }
