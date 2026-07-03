@@ -10,6 +10,7 @@ import SkillsSection from '@/components/sections/SkillsSection';
 import SkillsVisibilityToggle from '@/components/ui/SkillsVisibilityToggle';
 import SkillsManager from '@/components/sections/SkillsManager';
 import { getSessionData } from '@/lib/auth';
+import Skills from './Skills/page';
 
 export default async function Home() {
   await connectDB();
@@ -25,7 +26,7 @@ export default async function Home() {
   const isAdmin = session?.role === 'admin';
 
   return (
-    <main>
+    <>
       <div className="flex flex-col gap-6">
         {isAdmin && (
           <div className="flex items-center justify-end w-full space-x-4">
@@ -38,21 +39,8 @@ export default async function Home() {
         )}
 
         <Profil hidden={!isVisible} isAdmin={isAdmin} />
-
-        <div className="flex items-center justify-end w-full">
-          {isAdmin && (
-            <div className="flex items-center gap-3">
-              <SkillsVisibilityToggle
-                key={String(showSkills)}
-                initialValue={showSkills}
-              />
-              <SkillsManager />
-            </div>
-          )}
-        </div>
-
-        <SkillsSection hidden={!showSkills} isAdmin={isAdmin} />
+      {/* <Skills/> */}
       </div>
-    </main>
+    </>
   );
 }

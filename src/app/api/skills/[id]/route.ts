@@ -3,6 +3,17 @@ import connectDB from '@/lib/mongodb';
 import Skill from '@/models/Skill';
 import { isAuthenticated } from '@/lib/auth';
 
+function handleMongoError(error: unknown, fallback: string) {
+  if (error instanceof Error && 'code' in error && (error as any).code === 11000) {
+    return NextResponse.json({ error: 'A skill with this slug already exists' }, { status: 409 });
+  }
+  if (error instanceof Error && error.name === 'ValidationError') {
+    return NextResponse.json({ error: error.message }, { status: 400 });
+  }
+  console.error(fallback, error);
+  return NextResponse.json({ error: fallback }, { status: 500 });
+}
+
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -27,8 +38,7 @@ export async function PATCH(
 
     return NextResponse.json(skill);
   } catch (error) {
-    console.error('Error updating skill:', error);
-    return NextResponse.json({ error: 'Failed to update skill' }, { status: 500 });
+    return handleMongoError(error, 'Failed to update skill');
   }
 }
 
@@ -51,7 +61,6 @@ export async function DELETE(
 
     return NextResponse.json({ message: 'Skill deleted successfully' });
   } catch (error) {
-    console.error('Error deleting skill:', error);
-    return NextResponse.json({ error: 'Failed to delete skill' }, { status: 500 });
+    return handleMongoError(error, 'Failed to delete skill');
   }
 }

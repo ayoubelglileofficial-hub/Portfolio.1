@@ -3,12 +3,14 @@ import { getSkillIcon } from "@/lib/skill-icons";
 interface SkillBadgeProps {
   name: string;
   icon: string;
+  color?: string;
   experience?: string;
   highlighted?: boolean;
 }
 
-export default function SkillBadge({ name, icon, experience, highlighted = false }: SkillBadgeProps) {
-  const { icon: Icon, color } = getSkillIcon(icon);
+export default function SkillBadge({ name, icon, color: badgeColor, experience, highlighted = false }: SkillBadgeProps) {
+  const { icon: Icon, color: defaultColor } = getSkillIcon(icon);
+  const color = badgeColor || defaultColor;
 
   return (
     <div

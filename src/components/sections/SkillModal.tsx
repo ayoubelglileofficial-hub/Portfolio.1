@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { Loader2, X } from 'lucide-react';
+import { SkillSelect } from '@/components/layout/SkillSelect';
 
 interface SkillFormData {
   name: string;
@@ -115,6 +116,18 @@ export default function SkillModal({ skill, onClose, onSave }: SkillModalProps) 
       toast.error('Slug is required');
       return;
     }
+    if (!form.category) {
+      toast.error('Category is required');
+      return;
+    }
+    if (!form.icon.trim()) {
+      toast.error('Icon key is required');
+      return;
+    }
+    if (!form.color.trim()) {
+      toast.error('Color is required');
+      return;
+    }
 
     setSaving(true);
     try {
@@ -180,24 +193,24 @@ export default function SkillModal({ skill, onClose, onSave }: SkillModalProps) 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
+                <Label htmlFor="name">Name <span className="text-red-500">*</span></Label>
                 <Input id="name" name="name" value={form.name} onChange={handleChange} placeholder="React" />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="slug">Slug</Label>
+                <Label htmlFor="slug">Slug <span className="text-red-500">*</span></Label>
                 <Input id="slug" name="slug" value={form.slug} onChange={handleChange} placeholder="react" />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="category">Category</Label>
+                <Label htmlFor="category">Category <span className="text-red-500">*</span></Label>
                 <select
                   id="category"
                   name="category"
                   value={form.category}
                   onChange={handleChange}
-                  className="flex h-11 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  className="flex h-11 w-full rounded-lg border border-input bg-background dark:bg-zinc-800 dark:text-white px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                   {categories.map((cat) => (
                     <option key={cat.value} value={cat.value}>
@@ -220,17 +233,14 @@ export default function SkillModal({ skill, onClose, onSave }: SkillModalProps) 
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="icon">Icon key</Label>
-                <Input
-                  id="icon"
-                  name="icon"
+                <Label>Icon key <span className="text-red-500">*</span></Label>
+                <SkillSelect
                   value={form.icon}
-                  onChange={handleChange}
-                  placeholder="react"
+                  onChange={(key) => setForm((prev) => ({ ...prev, icon: key }))}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="color">Color</Label>
+                <Label htmlFor="color">Color <span className="text-red-500">*</span></Label>
                 <div className="flex items-center gap-3">
                   <Input
                     id="color"

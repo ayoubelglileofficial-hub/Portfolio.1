@@ -3,6 +3,17 @@ import connectDB from '@/lib/mongodb';
 import Skill from '@/models/Skill';
 import { isAuthenticated } from '@/lib/auth';
 
+function handleMongoError(error: unknown, fallback: string) {
+  if (error instanceof Error && 'code' in error && (error as any).code === 11000) {
+    return NextResponse.json({ error: 'A skill with this slug already exists' }, { status: 409 });
+  }
+  if (error instanceof Error && error.name === 'ValidationError') {
+    return NextResponse.json({ error: error.message }, { status: 400 });
+  }
+  console.error(fallback, error);
+  return NextResponse.json({ error: fallback }, { status: 500 });
+}
+
 export async function GET() {
   try {
     await connectDB();
@@ -25,7 +36,6 @@ export async function POST(request: NextRequest) {
     const skill = await Skill.create(body);
     return NextResponse.json(skill, { status: 201 });
   } catch (error) {
-    console.error('Error creating skill:', error);
-    return NextResponse.json({ error: 'Failed to create skill' }, { status: 500 });
+    return handleMongoError(error, 'Failed to create skill');
   }
 }

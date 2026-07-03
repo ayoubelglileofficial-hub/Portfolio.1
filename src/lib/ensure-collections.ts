@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
+import type { IndexSpecification, CreateIndexesOptions } from 'mongodb';
 
 const collections: {
   name: string;
-  indexes: { spec: Record<string, unknown>; options?: Record<string, unknown> }[];
+  indexes: { spec: IndexSpecification; options?: CreateIndexesOptions }[];
 }[] = [
   {
     name: 'profiles',

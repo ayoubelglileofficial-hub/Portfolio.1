@@ -33,28 +33,28 @@ import {
 const workLinks = [
   {
     title: "Skills",
-    href: "#skills",
+    href: "/Skills",
     description: "Technologies and tools I work with daily",
     icon: Zap,
   },
   {
     title: "Projects",
-    href: "#projects",
+    href: "/Projects",
     description: "Selected work and case studies",
     icon: Layers,
   },
   {
     title: "Experience",
-    href: "#experience",
+    href: "/Experience",
     description: "Professional journey and roles",
     icon: Briefcase,
   },
 ]
 
 const mainLinks = [
-  { title: "About", href: "#about", icon: User },
-  { title: "Education", href: "#education", icon: GraduationCap },
-  { title: "Contact Me", href: "#contact", icon: Mail },
+  { title: "About", href: "/About", icon: User },
+  { title: "Education", href: "/Education", icon: GraduationCap },
+  { title: "Contact Me", href: "/Contact", icon: Mail },
 ]
 
 interface HeaderProps {
@@ -101,7 +101,7 @@ export function Header({ logoUrl }: HeaderProps) {
           <nav className="hidden md:flex items-center gap-1">
             {/* About */}
             <Link
-              href="#about"
+              href="/About"
               className="px-4 py-2 font-medium rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
             >
               About
@@ -135,11 +135,10 @@ export function Header({ logoUrl }: HeaderProps) {
               {workOpen && (
                 <>
                   <div
-                    className="fixed inset-0  z-10"
-                    onClick={() => setWorkOpen(false)}
-                  />
-                  <div className="absolute right-0 top-full mt-2  w-80 rounded-xl border bg-popover p-4 shadow-lg">
-                    <div className="grid gap-2">
+      className="fixed inset-0 z-10"
+      onClick={() => setWorkOpen(false)}
+    />
+    <div className="absolute right-0 top-full mt-2 w-80 rounded-xl border bg-popover p-4 shadow-lg z-20">
                       {workLinks.map((link) => {
                         const Icon = link.icon
                         return (
@@ -164,14 +163,13 @@ export function Header({ logoUrl }: HeaderProps) {
                         )
                       })}
                     </div>
-                  </div>
                 </>
               )}
             </div>
 
             {/* Education */}
             <Link
-              href="#education"
+              href="/Education"
               className="px-4 py-2 font-medium rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
             >
               Education
@@ -179,7 +177,7 @@ export function Header({ logoUrl }: HeaderProps) {
 
             {/* Contact Me */}
             <Link
-              href="#contact"
+              href="/Contact"
               className="px-4 py-2 font-medium rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
             >
               Contact Me
@@ -198,7 +196,7 @@ export function Header({ logoUrl }: HeaderProps) {
               <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 dark:rotate-0 dark:scale-100 text-blue-500" />
               <span className="sr-only">Toggle theme</span>
             </Button>
-            <Link href="#contact">
+            <Link href="/Contact">
               <Button
                 size="sm"
                 className="rounded-full px-6 bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white"
@@ -242,7 +240,7 @@ export function Header({ logoUrl }: HeaderProps) {
                     
                     {/* About */}
                     <Link
-                      href="#about"
+                      href="/About"
                       className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors"
                     >
                       <User className="h-4 w-4 text-muted-foreground" />
@@ -274,7 +272,7 @@ export function Header({ logoUrl }: HeaderProps) {
 
                     {/* Education */}
                     <Link
-                      href="#education"
+                      href="/Education"
                       className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors"
                     >
                       <GraduationCap className="h-4 w-4 text-muted-foreground" />
@@ -283,7 +281,7 @@ export function Header({ logoUrl }: HeaderProps) {
 
                     {/* Contact Me */}
                     <Link
-                      href="#contact"
+                      href="/Contact"
                       className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors"
                     >
                       <Mail className="h-4 w-4 text-muted-foreground" />
@@ -300,7 +298,7 @@ export function Header({ logoUrl }: HeaderProps) {
                       Action
                     </h3>
                     <Link
-                      href="#contact"
+                      href="/Contact"
                       className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors"
                     >
                       <Mail className="h-4 w-4 text-muted-foreground" />

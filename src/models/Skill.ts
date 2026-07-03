@@ -14,7 +14,6 @@ export interface ISkill extends Document {
 }
 
 const SkillSchema = new Schema({
-    _id: { type: String },
     name: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
     category: { type: String, required: true },

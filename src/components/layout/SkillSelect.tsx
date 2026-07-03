@@ -1,6 +1,6 @@
 "use client";
 
-import { skillIconMap } from "@/lib/skill-icons";
+import { skillIconMap, getSkillIcon } from "@/lib/skill-icons";
 import { useState, useMemo, useRef, useEffect } from "react";
 
 interface SkillSelectProps {
@@ -59,7 +59,7 @@ export function SkillSelect({ value, onChange, placeholder = "Search a skill..."
     const selected = value ? getSkillIcon(value) : null;
 
     return (
-        <div ref={containerRef} className="relative w-full max-w-xs">
+        <div ref={containerRef} className="relative w-full">
             <div className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500">
                 {selected && (
                     <selected.icon size={18} style={{ color: selected.color }} />
