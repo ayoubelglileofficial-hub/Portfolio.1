@@ -39,7 +39,7 @@ const workLinks = [
   },
   {
     title: "Projects",
-    href: "/Projects",
+    href: "/projects",
     description: "Selected work and case studies",
     icon: Layers,
   },

@@ -3,16 +3,16 @@ export const revalidate = 0;
 
 import connectDB from '@/lib/mongodb';
 import Profile from '@/models/Profile';
-import SkillsSection from '@/components/layout/skills/SkillsSection';
-import SkillsVisibilityToggle from '@/components/ui/SkillsVisibilityToggle';
-import SkillsManager from '@/components/layout/skills/SkillsManager';
 import { getSessionData } from '@/lib/auth';
+import ProjectsSection from '@/components/layout/Projects/ProjectsSection';
+import ProjectsManager from '@/components/layout/Projects/ProjectsManager';
+import ProjectsVisibilityToggle from '@/components/layout/Projects/ProjectsVisibilityToggle';
 
-export default async function Skills() {
+export default async function Projects() {
   await connectDB();
   const profil = await Profile.findOne({ _id: 'prof_001' }).lean();
-  const showSkills = profil
-    ? profil.show_skills === true || profil.show_skills === 'true'
+  const showProjects = profil
+    ? profil.show_projects === true || profil.show_projects === 'true'
     : true;
 
   const session = await getSessionData();
@@ -24,16 +24,16 @@ export default async function Skills() {
         {isAdmin && (
           <div className="flex items-center justify-end w-full">
             <div className="flex items-center gap-3">
-              <SkillsVisibilityToggle
-                key={String(showSkills)}
-                initialValue={showSkills}
+              <ProjectsVisibilityToggle
+                key={String(showProjects)}
+                initialValue={showProjects}
               />
-              <SkillsManager />
+              <ProjectsManager />
             </div>
           </div>
         )}
 
-        <SkillsSection hidden={!showSkills} isAdmin={isAdmin} />
+        <ProjectsSection hidden={!showProjects} isAdmin={isAdmin} />
       </div>
     </main>
   );

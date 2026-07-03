@@ -20,6 +20,9 @@ interface SkillFormData {
 }
 
 interface SkillModalProps {
+  
+  
+  
   skill?: SkillFormData & { _id?: string } | null;
   onClose: () => void;
   onSave: () => void;

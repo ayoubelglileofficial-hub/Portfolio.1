@@ -9,12 +9,12 @@ import {
 } from "lucide-react"
 
 const mainLinks = [
-    { title: "About", href: "#about", icon: UserIcon },
-    { title: "Skills", href: "#skills", icon: Zap },
-    { title: "Projects", href: "#projects", icon: Layers },
-    { title: "Experience", href: "#experience", icon: Briefcase },
-    { title: "Education", href: "#education", icon: GraduationCap },
-    { title: "Contact Me", href: "#contact", icon: Mail },
+    { title: "About", href: "/About", icon: UserIcon },
+    { title: "Skills", href: "/Skills", icon: Zap },
+    { title: "Projects", href: "/projects", icon: Layers },
+    { title: "Experience", href: "/Experience", icon: Briefcase },
+    { title: "Education", href: "/Education", icon: GraduationCap },
+    { title: "Contact Me", href: "/Contact", icon: Mail },
 ]
 
 export default function HeaderAdmin() {

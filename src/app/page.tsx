@@ -6,11 +6,12 @@ import Profile from '@/models/Profile';
 import Profil from '@/components/layout/Profil';
 import ProfileVisibilityToggle from '@/components/ProfileVisibilityToggle';
 import ProfileForm from '@/components/layout/ProfileModal';
-import SkillsSection from '@/components/sections/SkillsSection';
+import SkillsSection from '@/components/layout/skills/SkillsSection';
 import SkillsVisibilityToggle from '@/components/ui/SkillsVisibilityToggle';
-import SkillsManager from '@/components/sections/SkillsManager';
+import SkillsManager from '@/components/layout/skills/SkillsManager';
 import { getSessionData } from '@/lib/auth';
 import Skills from './Skills/page';
+import Projects from '@/components/layout/Projects';
 
 export default async function Home() {
   await connectDB();
@@ -39,6 +40,7 @@ export default async function Home() {
         )}
 
         <Profil hidden={!isVisible} isAdmin={isAdmin} />
+        {/* <Projects /> */}
       {/* <Skills/> */}
       </div>
     </>

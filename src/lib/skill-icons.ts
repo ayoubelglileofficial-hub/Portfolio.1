@@ -1,7 +1,7 @@
 import {
   Code2, Server, Terminal, Database, Box, Cloud, GitBranch,
   PenTool, Brain, Languages, Network, TestTube2, Workflow,
-  ShieldCheck, Gauge, Users, Layers, type LucideIcon,
+  ShieldCheck, Gauge, Users, Layers, Play, type LucideIcon,
 } from "lucide-react";
 import { ReactJs, TypeScript, TailwindCSS, HTML } from "@deemlol/next-icons";
 import { RiNextjsFill } from "react-icons/ri";
@@ -20,7 +20,7 @@ import { RiClaudeFill } from "react-icons/ri";
 import {
   SiGraphql, SiRedis, SiJest, SiCypress, SiNginx, SiPrisma,
   SiJenkins, SiTerraform, SiGooglecloud, SiVercel,
-  SiApachekafka, SiRabbitmq, SiGithubactions,
+  SiApachekafka, SiRabbitmq, SiGithubactions, SiStripe,
 } from "react-icons/si";
 import { VscAzure } from "react-icons/vsc";
 
@@ -58,6 +58,8 @@ export const skillIconMap: Record<string, SkillIconEntry> = {
   gitlab: { icon: BsGitlab, color: "#FC6D26" },
   kubernetes: { icon: SiKubernetes, color: "#326CE5" },
   claude: { icon: RiClaudeFill, color: "#FFA500" },
+  stripe: { icon: SiStripe, color: "#635BFF" },
+  "framer-motion": { icon: Play, color: "#0055FF" },
 
   // --- Senior / architect-track additions ---
   "system-design": { icon: Network, color: "#0EA5E9" },       // designing scalable architectures

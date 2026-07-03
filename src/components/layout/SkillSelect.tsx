@@ -1,7 +1,7 @@
 "use client";
 
-import { skillIconMap, getSkillIcon } from "@/lib/skill-icons";
-import { useState, useMemo, useRef, useEffect } from "react";
+import { getSkillIcon } from "@/lib/skill-icons";
+import { useSearchableDropdown } from "@/hooks/useSearchableDropdown";
 
 interface SkillSelectProps {
     value?: string;
@@ -10,50 +10,20 @@ interface SkillSelectProps {
 }
 
 export function SkillSelect({ value, onChange, placeholder = "Search a skill..." }: SkillSelectProps) {
-    const [query, setQuery] = useState("");
-    const [open, setOpen] = useState(false);
-    const [activeIndex, setActiveIndex] = useState(0);
-    const containerRef = useRef<HTMLDivElement>(null);
-
-    const skillKeys = useMemo(() => Object.keys(skillIconMap), []);
-
-    const filtered = useMemo(() => {
-        if (!query.trim()) return skillKeys;
-        const q = query.toLowerCase();
-        return skillKeys.filter((key) => key.toLowerCase().includes(q));
-    }, [query, skillKeys]);
-
-    // close dropdown on outside click
-    useEffect(() => {
-        function handleClickOutside(e: MouseEvent) {
-            if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-                setOpen(false);
-            }
-        }
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+    const {
+        query, setQuery,
+        filtered,
+        activeIndex, setActiveIndex,
+        open, setOpen,
+        containerRef,
+        handleKeyDown,
+        resetSearch,
+    } = useSearchableDropdown();
 
     function selectSkill(key: string) {
         onChange(key);
-        setQuery("");
+        resetSearch();
         setOpen(false);
-    }
-
-    function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-        if (!open) return;
-        if (e.key === "ArrowDown") {
-            e.preventDefault();
-            setActiveIndex((i) => Math.min(i + 1, filtered.length - 1));
-        } else if (e.key === "ArrowUp") {
-            e.preventDefault();
-            setActiveIndex((i) => Math.max(i - 1, 0));
-        } else if (e.key === "Enter") {
-            e.preventDefault();
-            if (filtered[activeIndex]) selectSkill(filtered[activeIndex]);
-        } else if (e.key === "Escape") {
-            setOpen(false);
-        }
     }
 
     const selected = value ? getSkillIcon(value) : null;
@@ -67,13 +37,9 @@ export function SkillSelect({ value, onChange, placeholder = "Search a skill..."
                 <input
                     type="text"
                     value={open ? query : value ?? query}
-                    onChange={(e) => {
-                        setQuery(e.target.value);
-                        setActiveIndex(0);
-                        setOpen(true);
-                    }}
+                    onChange={(e) => setQuery(e.target.value)}
                     onFocus={() => setOpen(true)}
-                    onKeyDown={handleKeyDown}
+                    onKeyDown={(e) => handleKeyDown(e, selectSkill)}
                     placeholder={placeholder}
                     className="w-full outline-none text-sm"
                 />
