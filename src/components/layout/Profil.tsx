@@ -73,7 +73,7 @@ export default async function Profil({ hidden, isAdmin }: ProfilProps) {
               </a>
             </div>
 
-            <div className="flex flex-col xl:flex-row items-center justify-between w-full xl:w-[85%] xl:absolute xl:inset-0 xl:pointer-events-none mt-6 xl:mt-30 xl:ml-21 2xl:mt-55">
+            <div className="flex flex-col xl:flex-row items-center justify-between w-full xl:w-[94%] 2xl:w-[88%] xl:absolute xl:inset-0 xl:pointer-events-none mt-6 xl:mt-30 xl:ml-10 2xl:ml-18 2xl:mt-55">
               <div className="flex flex-col space-y-6 xl:space-y-10 w-full xl:w-auto items-center xl:items-start">
                 <div className="bg-accent p-6 pb-4 border-3 rounded-xl w-full max-w-[650px] xl:w-[400px] 2xl:w-[405px] xl:rotate-[1.3deg] animationInfo">
                   <p className="text-sm xl:text-[12px] 2xl:text-[14px] text-zinc-600 dark:text-zinc-300 leading-relaxed text-center">{profil.bio_1}</p>
