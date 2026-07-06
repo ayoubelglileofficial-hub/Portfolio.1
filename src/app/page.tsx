@@ -26,11 +26,11 @@ export default async function Home() {
         <ServicesPage/>
         {profil && (
           <ContactSection
-            email={String(profil.email || '')}
-            phone={String(profil.phone || '')}
-            location={String(profil.location || '')}
-            githubUrl={String(profil.github_url || '#')}
-            linkedinUrl={String(profil.linkedin_url || '#')}
+            email={String(profil.email || 'ayoubelglile@gmail.com')}
+            phone={String(profil.phone || '0687976771')}
+            location={String(profil.location || 'Casablanca, Morocco')}
+            githubUrl={String(profil.github_url || 'https://github.com/elglile')}
+            linkedinUrl={String(profil.linkedin_url || 'https://www.linkedin.com/in/ayoub-el-glile')}
           />
         )}
       </div>
