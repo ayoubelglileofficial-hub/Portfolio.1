@@ -22,7 +22,7 @@ export default async function Profil({ hidden, isAdmin }: ProfilProps) {
 
   return (
     <section id="about" className="flex flex-col flex-1 items-center justify-center w-full font-mono scroll-mt-20">
-      <div className={`w-11/12 rounded-xl border p-8 xl:p-2 2xl:p-8 flex flex-col items-center justify-between xl:min-h-[81vh] 2xl:min-h-[85vh] ${preview ? 'bg-red-500/5 border-red-200 dark:border-red-900/50' : 'bg-muted/60 border-zinc-200 dark:border-transparent'}`}>
+      <div className={`relative w-11/12 rounded-xl border p-8 xl:p-2 2xl:p-8 flex flex-col items-center justify-between xl:min-h-[81vh] 2xl:min-h-[85vh] ${preview ? 'bg-red-500/5 border-red-200 dark:border-red-900/50' : 'bg-muted/60 border-zinc-200 dark:border-transparent'}`}>
 
         <div className="pt-14 pb-6 px-6 text-center">
           <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold ${preview ? 'text-red-500' : 'text-zinc-900 dark:text-white'}`}>
@@ -73,12 +73,12 @@ export default async function Profil({ hidden, isAdmin }: ProfilProps) {
               </a>
             </div>
 
-            <div className="flex flex-col xl:flex-row items-center justify-between w-full xl:w-[82%] xl:absolute xl:inset-0 xl:pointer-events-none mt-6 xl:mt-30 xl:ml-30 2xl:mt-55">
+            <div className="flex flex-col xl:flex-row items-center justify-between w-full xl:w-[83%] xl:absolute xl:inset-0 xl:pointer-events-none mt-6 xl:mt-30 xl:ml-20 2xl:mt-55">
               <div className="flex flex-col space-y-6 xl:space-y-10 w-full xl:w-auto items-center xl:items-start">
-                <div className="bg-accent p-6 pb-4 border-3 rounded-xl w-full max-w-[650px] xl:w-[400px] 2xl:w-[450px] xl:rotate-[1.3deg] animationInfo">
+                <div className="bg-accent p-6 pb-4 border-3 rounded-xl w-full max-w-[650px] xl:w-[400px] 2xl:w-[410px] xl:rotate-[1.3deg] animationInfo">
                   <p className="text-sm xl:text-[12px] 2xl:text-[14px] text-zinc-600 dark:text-zinc-300 leading-relaxed text-center">{profil.bio_1}</p>
                 </div>
-                <div className="bg-accent p-6 pb-4 border-3 rounded-xl w-full max-w-[650px] xl:w-[400px] 2xl:w-[450px] xl:rotate-[1.3deg] animationInfo">
+                <div className="bg-accent p-6 pb-4 border-3 rounded-xl w-full max-w-[650px] xl:w-[400px] 2xl:w-[410px] xl:rotate-[1.3deg] animationInfo">
                   <p className="text-sm xl:text-[12px] 2xl:text-[14px] text-zinc-600 dark:text-zinc-300 leading-relaxed text-center">{profil.bio_2}</p>
                 </div>
               </div>

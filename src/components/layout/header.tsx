@@ -43,18 +43,22 @@ const workLinks = [
     description: "Selected work and case studies",
     icon: Layers,
   },
-  {
-    title: "Experience",
-    href: "/Experience",
-    description: "Professional journey and roles",
-    icon: Briefcase,
-  },
+  // {
+  //   title: "Experience",
+  //   href: "/Experience",
+  //   description: "Professional journey and roles",
+  //   icon: Briefcase,
+  // },
 ]
 
 const mainLinks = [
   // { title: "About", href: "/About", icon: User },
+  {title: "Home", href: "/", icon: User},
+  { title: "Experience", href: "/Experience", icon: Briefcase },
+
   { title: "Education", href: "/Education", icon: GraduationCap },
-  { title: "Contact Me", href: "/Contact", icon: Mail },
+
+  { title: "Contact Me", href: "#Contact", icon: Mail },
 ]
 
 interface HeaderProps {
@@ -68,7 +72,7 @@ export function Header({ logoUrl }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false)
   const [workOpen, setWorkOpen] = useState(false)
 
-  
+
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -80,10 +84,10 @@ export function Header({ logoUrl }: HeaderProps) {
     <header
       className={cn(
         "sticky top-0 z-40 w-full transition-all duration-300",
-        scrolled ? "glass shadow-sm py-2 bg-muted" : "bg-transparent py-4"
+        scrolled ? "glass shadow-sm py-2 bg-muted" : "bg-transparent py-4 "
       )}
     >
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl text-md font-mono">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl text-md font-mono ">
         <div className="flex items-center justify-between h-14">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
@@ -98,94 +102,52 @@ export function Header({ logoUrl }: HeaderProps) {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
-            {/* About */}
-            {/* <Link
-              href="/About"
-              className="px-4 py-2 font-medium rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
-            >
-              About
-            </Link> */}
+          {/* Desktop Floating Sidebar */}
+          <nav className="hidden lg:flex fixed left-6 top-1/2 -translate-y-1/2 z-50">
+            <div className="flex flex-col items-center gap-3 rounded-full border bg-background/80 backdrop-blur-md shadow-xl p-3">
+              {mainLinks.map((link) => {
+                const Icon = link.icon
+                const active = pathname === link.href
 
-            {/* Work Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setWorkOpen(!workOpen)}
-                className="px-4 py-2 font-medium rounded-md hover:bg-accent hover:text-accent-foreground transition-colors flex items-center gap-1"
-              >
-                Work
-                <svg
-                  className={cn(
-                    "h-4 w-4 transition-transform",
-                    workOpen && "rotate-180"
-                  )}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-
-              {workOpen && (
-                <>
-                  <div
-      className="fixed inset-0 z-10"
-      onClick={() => setWorkOpen(false)}
-    />
-    <div className="absolute right-0 top-full mt-2 w-80 rounded-xl border bg-popover p-4 shadow-lg z-20">
-                      {workLinks.map((link) => {
-                        const Icon = link.icon
-                        return (
-                          <Link
-                            key={link.href}
-                            href={link.href}
-                            onClick={() => setWorkOpen(false)}
-                            className="flex items-start gap-3 rounded-lg p-3 hover:bg-accent transition-colors"
-                          >
-                            <div className="mt-0.5 rounded-md bg-primary/10 p-2">
-                              <Icon className="h-4 w-4 text-primary" />
-                            </div>
-                            <div>
-                              <div className="font-medium">
-                                {link.title}
-                              </div>
-                              <p className="text-xs text-muted-foreground mt-0.5">
-                                {link.description}
-                              </p>
-                            </div>
-                          </Link>
-                        )
-                      })}
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="group relative"
+                  >
+                    <div
+                      className={cn(
+                        "flex h-12 w-12 items-center justify-center rounded-full transition-all",
+                        active
+                          ? "bg-primary text-primary-foreground"
+                          : "hover:bg-accent hover:text-accent-foreground"
+                      )}
+                    >
+                      <Icon className="h-5 w-5" />
                     </div>
-                </>
-              )}
+
+                    {/* Tooltip */}
+                    <span className="absolute left-16 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-background border px-3 py-1 text-sm shadow-md opacity-0 translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">
+                      {link.title}
+                    </span>
+                  </Link>
+                )
+              })}
+
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full h-12 w-12"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              >
+                <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-yellow-500" />
+                <Moon className="absolute h-5 w-5 rotate-90 scale-0 dark:rotate-0 dark:scale-100 text-blue-500" />
+              </Button>
             </div>
-
-            {/* Education */}
-            <Link
-              href="/Education"
-              className="px-4 py-2 font-medium rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
-            >
-              Education
-            </Link>
-
-            {/* Contact Me */}
-            <Link
-              href="/Contact"
-              className="px-4 py-2 font-medium rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
-            >
-              Contact Me
-            </Link>
           </nav>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* <div className="hidden md:flex items-center gap-3">
             <Button
               variant="ghost"
               size="icon"
@@ -196,7 +158,7 @@ export function Header({ logoUrl }: HeaderProps) {
               <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 dark:rotate-0 dark:scale-100 text-blue-500" />
               <span className="sr-only">Toggle theme</span>
             </Button>
-            <Link href="/Contact">
+            <Link href="#Contact">
               <Button
                 size="sm"
                 className="rounded-full px-6 bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white"
@@ -204,10 +166,10 @@ export function Header({ logoUrl }: HeaderProps) {
                 Hire Me
               </Button>
             </Link>
-          </div>
+          </div> */}
 
           {/* Mobile */}
-          <div className="md:hidden flex items-center gap-3 font-mono">
+          <div className="lg:hidden flex items-center gap-3 font-mono">
             <Button
               variant="ghost"
               size="icon"
@@ -230,14 +192,14 @@ export function Header({ logoUrl }: HeaderProps) {
                     Menu
                   </SheetTitle>
                 </SheetHeader>
-                
+
                 <div className="flex flex-col gap-6 px-6 py-6">
                   {/* Navigation Section */}
                   <div className="flex flex-col gap-2">
                     <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1 px-1">
                       Navigation
                     </h3>
-                    
+
                     {/* About */}
                     {/* <Link
                       href="/About"
@@ -281,7 +243,7 @@ export function Header({ logoUrl }: HeaderProps) {
 
                     {/* Contact Me */}
                     <Link
-                      href="/Contact"
+                      href="#Contact"
                       className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors"
                     >
                       <Mail className="h-4 w-4 text-muted-foreground" />
@@ -298,7 +260,7 @@ export function Header({ logoUrl }: HeaderProps) {
                       Action
                     </h3>
                     <Link
-                      href="/Contact"
+                      href="#Contact"
                       className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors"
                     >
                       <Mail className="h-4 w-4 text-muted-foreground" />
