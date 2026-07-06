@@ -6,6 +6,20 @@ import { ProjectUpdateSchema } from '@/types/project';
 
 function handleMongoError(error: unknown, fallback: string) {
   if (error instanceof Error && 'code' in error && (error as any).code === 11000) {
+    const mongoErr = error as Record<string, unknown>;
+    if (mongoErr.keyPattern && (mongoErr.keyPattern as Record<string, unknown>).slug !== undefined) {
+      console.error(
+        '[DB] 11000 on slug — stale slug_1 index still exists in the projects collection.',
+        'Run `npm run remove-stale-indexes` to fix it.',
+      );
+      return NextResponse.json(
+        {
+          error:
+            'Database conflict: the projects collection contains an obsolete slug index. Run `npm run remove-stale-indexes` to remove it.',
+        },
+        { status: 409 },
+      );
+    }
     return NextResponse.json({ error: 'A project with this name already exists' }, { status: 409 });
   }
   if (error instanceof Error && error.name === 'ValidationError') {

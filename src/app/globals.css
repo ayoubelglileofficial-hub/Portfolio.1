@@ -147,7 +147,8 @@
   --foreground: oklch(0.95 0.01 250);
 
   /* Card backgrounds - slightly lighter navy */
-  --card: oklch(0.22 0.03 250);
+  /* --card: oklch(0.22 0.03 250); */
+  --card: oklch(38.356% 0.06459 247.731);
 
   /* Text inside cards */
   --card-foreground: oklch(0.95 0.01 250);

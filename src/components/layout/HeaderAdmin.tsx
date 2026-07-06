@@ -9,9 +9,9 @@ import {
 } from "lucide-react"
 
 const mainLinks = [
-    { title: "About", href: "/About", icon: UserIcon },
+    // { title: "About", href: "/About", icon: UserIcon },
     { title: "Skills", href: "/Skills", icon: Zap },
-    { title: "Projects", href: "/projects", icon: Layers },
+    { title: "Projects", href: "/Projects", icon: Layers },
     { title: "Experience", href: "/Experience", icon: Briefcase },
     { title: "Education", href: "/Education", icon: GraduationCap },
     { title: "Contact Me", href: "/Contact", icon: Mail },

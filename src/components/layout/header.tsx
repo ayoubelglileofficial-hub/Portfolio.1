@@ -39,7 +39,7 @@ const workLinks = [
   },
   {
     title: "Projects",
-    href: "/projects",
+    href: "/Projects",
     description: "Selected work and case studies",
     icon: Layers,
   },
@@ -52,7 +52,7 @@ const workLinks = [
 ]
 
 const mainLinks = [
-  { title: "About", href: "/About", icon: User },
+  // { title: "About", href: "/About", icon: User },
   { title: "Education", href: "/Education", icon: GraduationCap },
   { title: "Contact Me", href: "/Contact", icon: Mail },
 ]
@@ -100,12 +100,12 @@ export function Header({ logoUrl }: HeaderProps) {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
             {/* About */}
-            <Link
+            {/* <Link
               href="/About"
               className="px-4 py-2 font-medium rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
             >
               About
-            </Link>
+            </Link> */}
 
             {/* Work Dropdown */}
             <div className="relative">
@@ -239,13 +239,13 @@ export function Header({ logoUrl }: HeaderProps) {
                     </h3>
                     
                     {/* About */}
-                    <Link
+                    {/* <Link
                       href="/About"
                       className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors"
                     >
                       <User className="h-4 w-4 text-muted-foreground" />
                       About
-                    </Link>
+                    </Link> */}
 
                     {/* Work section with sub-items */}
                     <div className="px-3 py-2">

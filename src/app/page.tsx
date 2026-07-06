@@ -6,42 +6,23 @@ import Profile from '@/models/Profile';
 import Profil from '@/components/layout/Profil';
 import ProfileVisibilityToggle from '@/components/ProfileVisibilityToggle';
 import ProfileForm from '@/components/layout/ProfileModal';
-import SkillsSection from '@/components/layout/skills/SkillsSection';
-import SkillsVisibilityToggle from '@/components/ui/SkillsVisibilityToggle';
-import SkillsManager from '@/components/layout/skills/SkillsManager';
+// import SkillsSection from '@/components/layout/skills/SkillsSection';
+// import SkillsVisibilityToggle from '@/components/ui/SkillsVisibilityToggle';
+// import SkillsManager from '@/components/layout/skills/SkillsManager';
 import { getSessionData } from '@/lib/auth';
+import HomePage from './HomePage/page';
 import Skills from './Skills/page';
-import Projects from '@/components/layout/Projects';
+import Projects from './Projects/page';
+// import Skills from './Skills/page';
+// import Projects from '@/components/layout/Projects';
 
 export default async function Home() {
-  await connectDB();
-  const profil = await Profile.findOne({ _id: 'prof_001' }).lean();
-  const isVisible = profil
-    ? profil.isVisible === true || profil.isVisible === 'true'
-    : true;
-  const showSkills = profil
-    ? profil.show_skills === true || profil.show_skills === 'true'
-    : true;
-
-  const session = await getSessionData();
-  const isAdmin = session?.role === 'admin';
-
   return (
     <>
-      <div className="flex flex-col gap-6">
-        {isAdmin && (
-          <div className="flex items-center justify-end w-full space-x-4">
-            <ProfileVisibilityToggle
-              key={String(isVisible)}
-              initialValue={isVisible}
-            />
-            <ProfileForm profile={profil} />
-          </div>
-        )}
-
-        <Profil hidden={!isVisible} isAdmin={isAdmin} />
-        {/* <Projects /> */}
-      {/* <Skills/> */}
+      <div className="flex flex-col gap-6 space-y-14">
+      <HomePage/>
+      <Skills/>
+      <Projects/>
       </div>
     </>
   );

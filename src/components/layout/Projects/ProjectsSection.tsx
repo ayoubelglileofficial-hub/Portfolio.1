@@ -43,8 +43,8 @@ export default async function ProjectsSection({ hidden, isAdmin }: ProjectsSecti
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {(projects as ProjectDoc[])
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6 mx-auto">
+            {(projects as ProjectDoc[])
             .sort((a, b) => a.order_index - b.order_index)
             .map((project) => (
               <div key={project._id} className="flex justify-center sm:block">

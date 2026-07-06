@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "create-admin": "tsx src/scripts/create-admin.ts",
-    "sync-db": "tsx src/scripts/sync-db.ts"
+    "sync-db": "tsx src/scripts/sync-db.ts",
+    "remove-stale-indexes": "tsx src/scripts/remove-stale-project-indexes.ts"
   },
   "dependencies": {
     "@deemlol/next-icons": "^0.2.7",
