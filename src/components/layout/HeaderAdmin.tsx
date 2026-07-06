@@ -13,6 +13,7 @@ const mainLinks = [
     { title: "Skills", href: "/Skills", icon: Zap },
     { title: "Projects", href: "/Projects", icon: Layers },
     { title: "Experience", href: "/Experience", icon: Briefcase },
+    { title: "Services", href: "/Services", icon: Layers },
     { title: "Education", href: "/Education", icon: GraduationCap },
     { title: "Contact Me", href: "/Contact", icon: Mail },
 ]

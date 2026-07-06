@@ -13,6 +13,7 @@ import { getSessionData } from '@/lib/auth';
 import HomePage from './HomePage/page';
 import Skills from './Skills/page';
 import Projects from './Projects/page';
+import ServicesPage from './Services/page';
 // import Skills from './Skills/page';
 // import Projects from '@/components/layout/Projects';
 
@@ -23,6 +24,7 @@ export default async function Home() {
       <HomePage/>
       <Skills/>
       <Projects/>
+      <ServicesPage/>
       </div>
     </>
   );

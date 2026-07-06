@@ -55,7 +55,7 @@ export default async function Profil({ hidden, isAdmin }: ProfilProps) {
               />
             </div>
 
-            <div className="px-6 pb-6 pt-6 xl:pt-0 flex justify-center gap-4">
+            <div className="px-6 pb-6 pt-6 xl:pt-2 flex justify-center gap-6">
               <a href={profil.github_url} target="_blank" rel="noopener noreferrer" className="GitHubColor px-2.5 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
                 <GitHub className="w-5 h-5" />
               </a>
@@ -68,25 +68,25 @@ export default async function Profil({ hidden, isAdmin }: ProfilProps) {
               <a href={`mailto:${profil.email}?subject=${encodeURIComponent("Help Request")}&body=${encodeURIComponent("Hi Ayoub,\n\nI'm reaching out to help you.\n\nBest regards")}`} className="EmailColor px-2.5 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
                 <Mail className="w-5 h-5" />
               </a>
-              <a href="#contact" className="ContactColor px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
+              <a href="#contact" className="ContactColor px-4 py-2 rounded-lg border-2  bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
                 Hire Me
               </a>
             </div>
 
-            <div className="flex flex-col xl:flex-row items-center justify-between w-full xl:w-[83%] xl:absolute xl:inset-0 xl:pointer-events-none mt-6 xl:mt-30 xl:ml-20 2xl:mt-55">
+            <div className="flex flex-col xl:flex-row items-center justify-between w-full xl:w-[85%] xl:absolute xl:inset-0 xl:pointer-events-none mt-6 xl:mt-30 xl:ml-21 2xl:mt-55">
               <div className="flex flex-col space-y-6 xl:space-y-10 w-full xl:w-auto items-center xl:items-start">
-                <div className="bg-accent p-6 pb-4 border-3 rounded-xl w-full max-w-[650px] xl:w-[400px] 2xl:w-[410px] xl:rotate-[1.3deg] animationInfo">
+                <div className="bg-accent p-6 pb-4 border-3 rounded-xl w-full max-w-[650px] xl:w-[400px] 2xl:w-[405px] xl:rotate-[1.3deg] animationInfo">
                   <p className="text-sm xl:text-[12px] 2xl:text-[14px] text-zinc-600 dark:text-zinc-300 leading-relaxed text-center">{profil.bio_1}</p>
                 </div>
-                <div className="bg-accent p-6 pb-4 border-3 rounded-xl w-full max-w-[650px] xl:w-[400px] 2xl:w-[410px] xl:rotate-[1.3deg] animationInfo">
+                <div className="bg-accent p-6 pb-4 border-3 rounded-xl w-full max-w-[650px] xl:w-[400px] 2xl:w-[405px] xl:rotate-[1.3deg] animationInfo">
                   <p className="text-sm xl:text-[12px] 2xl:text-[14px] text-zinc-600 dark:text-zinc-300 leading-relaxed text-center">{profil.bio_2}</p>
                 </div>
               </div>
               <div className="flex flex-col space-y-6 xl:space-y-10 w-full xl:w-auto items-center xl:items-end mt-6 xl:mt-0">
-                <div className="bg-accent p-6 pb-4 border-3 rounded-xl w-full max-w-[650px] xl:w-[400px] 2xl:w-[450px] xl:rotate-[1.3deg] animationInfo">
+                <div className="bg-accent p-6 pb-4 border-3 rounded-xl w-full max-w-[650px] xl:w-[400px] 2xl:w-[405px] xl:rotate-[1.3deg] animationInfo">
                   <p className="text-sm xl:text-[12px] 2xl:text-[14px] text-zinc-600 dark:text-zinc-300 leading-relaxed text-center">{profil.bio_3}</p>
                 </div>
-                <div className="text-sm xl:text-[12px] 2xl:text-[14px] bg-accent p-6 pb-4 border-3 rounded-xl w-full max-w-[650px] xl:w-[400px] 2xl:w-[450px] xl:rotate-[1.3deg] animationInfo">
+                <div className="text-sm xl:text-[12px] 2xl:text-[14px] bg-accent p-6 pb-4 border-3 rounded-xl w-full max-w-[650px] xl:w-[400px] 2xl:w-[405px] xl:rotate-[1.3deg] animationInfo">
                   <div className="flex items-center gap-3 text-zinc-600 dark:text-zinc-400">
                     <Mail className="w-4 h-4 text-zinc-400" />
                     <span>{profil.email}</span>

@@ -3,19 +3,19 @@
 import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
 import { skillIconMap } from '@/lib/skill-icons';
 
-export function useSearchableDropdown() {
+export function useSearchableDropdown(keys?: string[]) {
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const skillKeys = useMemo(() => Object.keys(skillIconMap), []);
+  const itemKeys = useMemo(() => keys ?? Object.keys(skillIconMap), [keys]);
 
   const filtered = useMemo(() => {
-    if (!query.trim()) return skillKeys;
+    if (!query.trim()) return itemKeys;
     const q = query.toLowerCase();
-    return skillKeys.filter((key) => key.toLowerCase().includes(q));
-  }, [query, skillKeys]);
+    return itemKeys.filter((key) => key.toLowerCase().includes(q));
+  }, [query, itemKeys]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {

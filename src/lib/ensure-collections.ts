@@ -47,7 +47,7 @@ const collections: {
   },
   {
     name: 'services',
-    indexes: [{ spec: { slug: 1 }, options: { unique: true } }],
+    indexes: [{ spec: { order_index: 1 } }],
   },
   {
     name: 'testimonials',
