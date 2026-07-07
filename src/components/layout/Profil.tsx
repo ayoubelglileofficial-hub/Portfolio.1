@@ -1,10 +1,7 @@
 import { Mail, MapPin, Phone } from "lucide-react";
+import { GitHub, LinkedIn, WhatsApp } from "@deemlol/next-icons";
 import UniversalImage from "@/components/ui/universal-image";
-import connectDB from "@/lib/mongodb";
-import Profile from "@/models/Profile";
-import { LinkedIn } from "@deemlol/next-icons"
-import { GitHub } from "@deemlol/next-icons"
-import { WhatsApp } from "@deemlol/next-icons"
+import { ContactScrollButton } from "@/components/layout/ContactScrollButton";
 
 interface ProfilProps {
   hidden?: boolean;
@@ -12,6 +9,9 @@ interface ProfilProps {
 }
 
 export default async function Profil({ hidden, isAdmin }: ProfilProps) {
+  const { default: connectDB } = await import("@/lib/mongodb");
+  const { default: Profile } = await import("@/models/Profile");
+
   await connectDB();
   const profil = await Profile.findOne({ _id: "prof_001" }).lean();
 
@@ -68,9 +68,9 @@ export default async function Profil({ hidden, isAdmin }: ProfilProps) {
               <a href={`mailto:${profil.email}?subject=${encodeURIComponent("Help Request")}&body=${encodeURIComponent("Hi Ayoub,\n\nI'm reaching out to help you.\n\nBest regards")}`} className="EmailColor px-2.5 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
                 <Mail className="w-5 h-5" />
               </a>
-              <a href="#contact" className="ContactColor px-4 py-2 rounded-lg border-2  bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
+              <ContactScrollButton className="ContactColor px-4 py-2 rounded-lg border-2 bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
                 Hire Me
-              </a>
+              </ContactScrollButton>
             </div>
 
             <div className="flex flex-col xl:flex-row items-center justify-between w-full xl:w-[94%] 2xl:w-[88%] xl:absolute xl:inset-0 xl:pointer-events-none mt-6 xl:mt-30 xl:ml-10 2xl:ml-18 2xl:mt-55">

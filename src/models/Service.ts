@@ -1,7 +1,7 @@
-import mongoose, { Schema, Document } from 'mongoose'
+import mongoose, { Schema, type Document, type Types } from 'mongoose'
 
-export interface IService extends Document {
-    _id: string
+export interface IService extends Document<Types.ObjectId, object, IService> {
+    _id: Types.ObjectId
     title: string
     description: string
     icon: string

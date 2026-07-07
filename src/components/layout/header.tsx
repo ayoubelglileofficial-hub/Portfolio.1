@@ -22,6 +22,7 @@ import {
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { ContactScrollButton } from "@/components/layout/ContactScrollButton"
 import {
   Sheet,
   SheetContent,
@@ -29,6 +30,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { ScrollButton } from "./ScrollButton"
 
 const workLinks = [
   {
@@ -109,12 +111,33 @@ export function Header({ logoUrl }: HeaderProps) {
                 const Icon = link.icon
                 const active = pathname === link.href
 
+                if (link.href === "#Contact") {
+                  return (
+                    <ContactScrollButton
+                      key={link.href}
+                      className="group relative"
+                    >
+                      <div
+                        className={cn(
+                          "flex h-12 w-12 items-center justify-center rounded-full transition-all",
+                          active
+                            ? "bg-primary text-primary-foreground"
+                            : "hover:bg-accent hover:text-accent-foreground"
+                        )}
+                      >
+                        <Icon className="h-5 w-5" />
+                      </div>
+                        
+
+                      <span className="absolute left-16 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-background border px-3 py-1 text-sm shadow-md opacity-0 translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">
+                        {link.title}
+                      </span>
+                    </ContactScrollButton>
+                  )
+                }
+
                 return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="group relative"
-                  >
+                  <Link key={link.href} href={link.href} className="group relative">
                     <div
                       className={cn(
                         "flex h-12 w-12 items-center justify-center rounded-full transition-all",
@@ -126,7 +149,6 @@ export function Header({ logoUrl }: HeaderProps) {
                       <Icon className="h-5 w-5" />
                     </div>
 
-                    {/* Tooltip */}
                     <span className="absolute left-16 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-background border px-3 py-1 text-sm shadow-md opacity-0 translate-x-2 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">
                       {link.title}
                     </span>
@@ -242,13 +264,10 @@ export function Header({ logoUrl }: HeaderProps) {
                     </Link>
 
                     {/* Contact Me */}
-                    <Link
-                      href="#Contact"
-                      className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors"
-                    >
+                    <ContactScrollButton className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors text-left">
                       <Mail className="h-4 w-4 text-muted-foreground" />
                       Contact Me
-                    </Link>
+                    </ContactScrollButton>
                   </div>
 
                   {/* Divider */}
@@ -259,13 +278,10 @@ export function Header({ logoUrl }: HeaderProps) {
                     <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1 px-1">
                       Action
                     </h3>
-                    <Link
-                      href="#Contact"
-                      className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors"
-                    >
+                    <ContactScrollButton className="flex items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-accent transition-colors text-left">
                       <Mail className="h-4 w-4 text-muted-foreground" />
                       Hire Me
-                    </Link>
+                    </ContactScrollButton>
                   </div>
                 </div>
               </SheetContent>

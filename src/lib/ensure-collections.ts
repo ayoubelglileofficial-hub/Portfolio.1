@@ -131,12 +131,13 @@ export default async function ensureCollections() {
       );
 
       if (!isDeclared) {
+        const indexName = index.name ?? "";
         console.log(
-          `[DB] Dropping stale index "${index.name}" on "${col.name}" (key: ${JSON.stringify(index.key)})`,
+          `[DB] Dropping stale index "${indexName}" on "${col.name}" (key: ${JSON.stringify(index.key)})`,
         );
         try {
-          await collection.dropIndex(index.name);
-          console.log(`[DB] Successfully dropped stale index "${index.name}"`);
+          await collection.dropIndex(indexName);
+          console.log(`[DB] Successfully dropped stale index "${indexName}"`);
         } catch (err) {
           console.error(
             `[DB] Failed to drop stale index "${index.name}" on "${col.name}":`,

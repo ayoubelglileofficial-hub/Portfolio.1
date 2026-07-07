@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import { MessageCircle, Mail, MapPin } from "lucide-react";
 import { GitHub, LinkedIn, WhatsApp } from "@deemlol/next-icons";
 import ContactForm from "./ContactForm";
@@ -20,11 +24,41 @@ export default function ContactSection({
   const waNumber = (phone || "")
     .replace(/\D/g, "")
     .replace(/^0/, "212");
+  const [hasTriggeredGlow, setHasTriggeredGlow] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const isInView = useInView(sectionRef, { amount: 0.3, once: true });
+
+  useEffect(() => {
+    if (!isInView) {
+      return;
+    }
+
+    const handleScroll = () => {
+      const section = document.getElementById("contact");
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+      const inContactArea = rect.top <= 140 && rect.bottom >= 140;
+
+      if (inContactArea && !hasTriggeredGlow) {
+        setHasTriggeredGlow(true);
+
+        window.setTimeout(() => {
+          setHasTriggeredGlow(false);
+        }, 1000);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [hasTriggeredGlow, isInView]);
 
   return (
     <section
       id="contact"
-      className="flex flex-col items-center w-full font-mono scroll-mt-20"
+      ref={sectionRef}
+      className="flex flex-col items-center w-full font-mono scroll-mt-24"
     >
       <div className="w-11/12 rounded-xl p-8 md:p-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
@@ -147,12 +181,17 @@ export default function ContactSection({
           </div>
 
           {/* ---------- RIGHT COLUMN ---------- */}
-          <div className="rounded-xl border bg-card/60 backdrop-blur-sm p-6 md:p-8 shadow-sm">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className={`rounded-xl border bg-card/60 backdrop-blur-sm p-6 md:p-8 shadow-sm transition-all duration-300 ${hasTriggeredGlow ? "shadow-[0_0_0_1px_rgba(96,165,250,0.35),0_0_45px_rgba(96,165,250,0.25)]" : "shadow-sm"}`}
+          >
             <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-6">
               Send a Message
             </h3>
             <ContactForm />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
