@@ -9,15 +9,11 @@ import { usePathname } from "next/navigation"
 import {
   Briefcase,
   Code,
-  GraduationCap,
-  Layers,
   Mail,
   Menu,
   Moon,
   Sun,
-  User,
-  Zap,
-  X,
+  User
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -31,29 +27,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { ScrollButton } from "./ScrollButton"
-import { link } from "fs/promises"
 
-const workLinks = [
-  {
-    title: "Skills",
-    href: "/Skills",
-    description: "Technologies and tools I work with daily",
-    icon: Zap,
-  },
-  {
-    title: "Projects",
-    href: "/Projects",
-    description: "Selected work and case studies",
-    icon: Layers,
-  },
-  // {
-  //   title: "Experience",
-  //   href: "/Experience",
-  //   description: "Professional journey and roles",
-  //   icon: Briefcase,
-  // },
-]
 
 const mainLinks = [
   // { title: "About", href: "/About", icon: User },

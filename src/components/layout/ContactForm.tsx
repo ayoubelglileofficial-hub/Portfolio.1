@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
-const WA_NUMBER = "212600000000"; // <-- YOUR WHATSAPP NUMBER HERE
+const WA_NUMBER = "212687976771"; // <-- YOUR WHATSAPP NUMBER HERE
 const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY"; // <-- YOUR EMAILJS PUBLIC KEY
 const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID"; // <-- YOUR EMAILJS SERVICE ID
 const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID"; // <-- YOUR EMAILJS TEMPLATE ID
