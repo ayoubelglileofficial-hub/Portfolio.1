@@ -19,6 +19,7 @@ export interface IProfile extends Document {
     show_projects: boolean;
     show_services: boolean;
     show_experience: boolean;
+    show_education: boolean;
     created_at: Date;
     updated_at: Date;
 }
@@ -43,6 +44,7 @@ const ProfileSchema = new Schema({
     show_projects: { type: Boolean, default: true },
     show_services: { type: Boolean, default: true },
     show_experience: { type: Boolean, default: true },
+    show_education: { type: Boolean, default: true },
     created_at: { type: Date, default: Date.now },
     updated_at: { type: Date, default: Date.now },
 });

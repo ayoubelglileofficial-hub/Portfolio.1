@@ -58,9 +58,9 @@ const workLinks = [
 const mainLinks = [
   // { title: "About", href: "/About", icon: User },
   {title: "Home", href: "/", icon: User},
-  { title: "Experience", href: "/Experience", icon: Briefcase },
+  { title: "About", href: "/About", icon: Briefcase },
 
-  { title: "Education", href: "/Education", icon: GraduationCap },
+  // { title: "Education", href: "/Education", icon: GraduationCap },
 
   { title: "Contact Me", href: "#Contact", icon: Mail },
 ]

@@ -75,7 +75,7 @@ export async function GET() {
 const ALLOWED_FIELDS = [
     'full_name', 'title', 'short_bio', 'email', 'phone', 'location',
     'avatar_url', 'website_logo', 'github_url', 'linkedin_url',
-    'bio_1', 'bio_2', 'bio_3', 'isVisible', 'show_skills', 'show_projects', 'show_services', 'show_experience',
+    'bio_1', 'bio_2', 'bio_3', 'isVisible', 'show_skills', 'show_projects', 'show_services', 'show_experience', 'show_education',
 ];
 
 // PATCH 
@@ -109,6 +109,9 @@ export async function PATCH(request: NextRequest) {
         }
         if (typeof updateBody.show_experience === 'string') {
             updateBody.show_experience = updateBody.show_experience === 'true';
+        }
+        if (typeof updateBody.show_education === 'string') {
+            updateBody.show_education = updateBody.show_education === 'true';
         }
 
         const updatedProfile = await Profile.findOneAndUpdate(

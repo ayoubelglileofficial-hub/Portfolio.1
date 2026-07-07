@@ -7,8 +7,21 @@ import { getSessionData } from '@/lib/auth';
 import ExperienceSection from '@/components/layout/Experience/ExperienceSection';
 import ExperienceAdminList from '@/components/layout/Experience/ExperienceAdminList';
 import ExperienceVisibilityToggle from '@/components/layout/Experience/ExperienceVisibilityToggle';
+import EducationSection from '@/components/layout/Education/EducationSection';
+import EducationAdminList from '@/components/layout/Education/EducationAdminList';
+import EducationVisibilityToggle from '@/components/layout/Education/EducationVisibilityToggle';
 
-export default async function Experience() {
+export default async function About() {
+  return (
+    <main className="flex flex-col gap-6">
+      <Experience/>
+      <Education/>
+    </main>
+  );
+}
+
+
+async function Experience() {
   await connectDB();
   const profil = await Profile.findOne({ _id: 'prof_001' }).lean();
   const showExperience = profil
@@ -34,6 +47,37 @@ export default async function Experience() {
         )}
 
         <ExperienceSection hidden={!showExperience} isAdmin={isAdmin} />
+      </div>
+    </main>
+  );
+}
+
+async function Education() {
+  await connectDB();
+  const profil = await Profile.findOne({ _id: 'prof_001' }).lean();
+  const showEducation = profil
+    ? profil.show_education === true || profil.show_education === 'true'
+    : true;
+
+  const session = await getSessionData();
+  const isAdmin = session?.role === 'admin';
+
+  return (
+    <main>
+      <div className="flex flex-col gap-6">
+        {isAdmin && (
+          <div className="flex items-center justify-end w-full">
+            <div className="flex items-center gap-3">
+              <EducationVisibilityToggle
+                key={String(showEducation)}
+                initialValue={showEducation}
+              />
+              <EducationAdminList />
+            </div>
+          </div>
+        )}
+
+        <EducationSection hidden={!showEducation} isAdmin={isAdmin} />
       </div>
     </main>
   );
