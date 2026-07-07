@@ -74,8 +74,8 @@ export async function GET() {
 
 const ALLOWED_FIELDS = [
     'full_name', 'title', 'short_bio', 'email', 'phone', 'location',
-    'avatar_url', 'website_logo', 'github_url', 'linkedin_url', 'website_url',
-    'bio_1', 'bio_2', 'bio_3', 'isVisible',
+    'avatar_url', 'website_logo', 'github_url', 'linkedin_url',
+    'bio_1', 'bio_2', 'bio_3', 'isVisible', 'show_skills', 'show_projects', 'show_services', 'show_experience', 'show_education', 'show_certification',
 ];
 
 // PATCH 
@@ -97,6 +97,24 @@ export async function PATCH(request: NextRequest) {
 
         if (typeof updateBody.isVisible === 'string') {
             updateBody.isVisible = updateBody.isVisible === 'true';
+        }
+        if (typeof updateBody.show_skills === 'string') {
+            updateBody.show_skills = updateBody.show_skills === 'true';
+        }
+        if (typeof updateBody.show_projects === 'string') {
+            updateBody.show_projects = updateBody.show_projects === 'true';
+        }
+        if (typeof updateBody.show_services === 'string') {
+            updateBody.show_services = updateBody.show_services === 'true';
+        }
+        if (typeof updateBody.show_experience === 'string') {
+            updateBody.show_experience = updateBody.show_experience === 'true';
+        }
+        if (typeof updateBody.show_education === 'string') {
+            updateBody.show_education = updateBody.show_education === 'true';
+        }
+        if (typeof updateBody.show_certification === 'string') {
+            updateBody.show_certification = updateBody.show_certification === 'true';
         }
 
         const updatedProfile = await Profile.findOneAndUpdate(

@@ -24,7 +24,6 @@ interface ProfileFormProps {
     website_logo: string;
     github_url: string;
     linkedin_url: string;
-    website_url: string;
     bio_1: string;
     bio_2: string;
     bio_3: string;
@@ -42,7 +41,6 @@ const defaultProfile = {
   website_logo: '',
   github_url: '',
   linkedin_url: '',
-  website_url: '',
   bio_1: '',
   bio_2: '',
   bio_3: '',
@@ -59,8 +57,6 @@ function sanitizeInput(input: string | undefined | null): string {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#x27;')
-    .replace(/\//g, '&#x2F;')
-    .replace(/\//g, '\\')
     .trim();
 }
 
@@ -142,12 +138,7 @@ function validateForm(formData: FormData): { isValid: boolean; errors: string[] 
     errors.push('Le lien LinkedIn doit être une URL valide (https://...).');
   }
 
-  const websiteUrl = (formData.get('website_url') as string || '').trim();
-  if (!websiteUrl) {
-    errors.push('Le lien du site web est requis.');
-  } else if (!isValidURL(websiteUrl)) {
-    errors.push('Le lien du site web doit être une URL valide (https://...).');
-  }
+
 
   // Bio fields - required + max 180 chars (including whitespace & symbols)
   const bio1 = (formData.get('bio_1') as string || '').trim();
@@ -180,7 +171,7 @@ function sanitizeFormData(rawFormData: FormData): FormData {
 
   const fieldsToSanitize = [
     'full_name', 'title', 'short_bio', 'email', 'phone', 'location',
-    'github_url', 'linkedin_url', 'website_url', 'bio_1', 'bio_2', 'bio_3'
+    'github_url', 'linkedin_url', 'bio_1', 'bio_2', 'bio_3'
   ];
 
   fieldsToSanitize.forEach((field) => {
@@ -293,10 +284,6 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
         if (!trimmed) return 'Le lien LinkedIn est requis.';
         if (!isValidURL(trimmed)) return 'URL invalide (https://...).';
         return '';
-      case 'website_url':
-        if (!trimmed) return 'Le lien du site web est requis.';
-        if (!isValidURL(trimmed)) return 'URL invalide (https://...).';
-        return '';
       case 'bio_1':
       case 'bio_2':
       case 'bio_3':
@@ -378,7 +365,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
       // Mark all fields as touched to show errors
       const allTouched: Record<string, boolean> = {};
       const allFields = ['full_name', 'title', 'short_bio', 'location', 'email', 'phone',
-                        'github_url', 'linkedin_url', 'website_url', 'bio_1', 'bio_2', 'bio_3'];
+                        'github_url', 'linkedin_url', 'bio_1', 'bio_2', 'bio_3'];
       allFields.forEach(f => { allTouched[f] = true; });
       setTouched(allTouched);
 
@@ -426,7 +413,7 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
       {/* Trigger Button */}
       <Button
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 px-3 py-2 h-auto text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+        className="flex items-center gap-2 px-3 py-2 h-auto text-sm font-mono font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
         style={{ width: '180px', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', left: 0 }}
       >
         <Pencil className="h-4 w-4" />
@@ -745,26 +732,6 @@ export default function ProfileForm({ profile }: ProfileFormProps) {
                       />
                       {getFieldError('linkedin_url') && (
                         <p className="text-xs text-red-500 mt-1">{getFieldError('linkedin_url')}</p>
-                      )}
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="website_url" className="text-sm">Site web *</Label>
-                      <Input
-                        id="website_url"
-                        name="website_url"
-                        type="url"
-                        value={formState.linkedin_url}
-                        onChange={handleInputChange}
-                        onBlur={(e) => {
-                          setTouched(prev => ({ ...prev, website_url: true }));
-                          setFieldErrors(prev => ({ ...prev, website_url: validateField('website_url', e.target.value) }));
-                        }}
-                        required
-                        className={`h-11 ${getFieldError('website_url') ? inputErrorClass : ''}`}
-                        placeholder="https://monsite.com"
-                      />
-                      {getFieldError('website_url') && (
-                        <p className="text-xs text-red-500 mt-1">{getFieldError('website_url')}</p>
                       )}
                     </div>
                   </CardContent>

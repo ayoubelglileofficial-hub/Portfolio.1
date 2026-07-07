@@ -13,7 +13,6 @@ const profileData = {
     website_logo: 'https://tse4.mm.bing.net/th/id/OIP.audMX4ZGbvT2_GJTx2c4GgHaHw?cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3',
     github_url: 'https://github.com/yourusername',
     linkedin_url: 'https://linkedin.com/in/yourusername',
-    website_url: 'https://yourportfolio.com',
     bio_1: 'Passionate developer with expertise in building modern web applications...',
     bio_2: 'With over 5 years of experience in the industry...',
     bio_3: "When I'm not coding, I enjoy contributing to open-source projects...",

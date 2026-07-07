@@ -69,6 +69,7 @@
 
   /* Primary buttons & links - dark gray */
   --primary: oklch(0.205 0 0);
+  --primary-b: oklch(62.824% 0.20103 143.447);
 
   /* Text on primary buttons (white) */
   --primary-foreground: oklch(0.985 0 0);
@@ -136,6 +137,7 @@
 
   /* Sidebar focus ring */
   --sidebar-ring: oklch(0.708 0 0);
+  
 }
 
 /* ---------- DARK MODE ---------- */
@@ -147,7 +149,8 @@
   --foreground: oklch(0.95 0.01 250);
 
   /* Card backgrounds - slightly lighter navy */
-  --card: oklch(0.22 0.03 250);
+  /* --card: oklch(0.22 0.03 250); */
+  --card: oklch(38.356% 0.06459 247.731);
 
   /* Text inside cards */
   --card-foreground: oklch(0.95 0.01 250);
@@ -256,12 +259,70 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 .WebsiteColor {
-  color: #4ae26b;
+  color: #0d972b;
 }
 .WebsiteColor:hover {
   color: white;
-  background-color:#4ae26b;
+  background-color:#0d972b;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+.EmailColor {
+  color: #c71610;
+}
+.EmailColor:hover {
+  color: white;
+  background-color:#c71610;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.ContactColor {
+  color: var(--accent);
+  background-color: #1a88d1;
+  shadow: 0 4px 6px rgba(26, 209, 65, 0.3);
+}
+.ContactColor:hover {
+  color: #1a88d1;
+  background-color:var(--accent);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: rgba(22, 113, 249, 0);
+  border-radius: 9999px;
+  transition: background-color 250ms ease, opacity 250ms ease;
+  opacity: 0;
+}
+
+.scrollbar-custom:hover::-webkit-scrollbar-thumb,
+.scrollbar-custom.scrolling::-webkit-scrollbar-thumb {
+  opacity: 1;
+  background-color: #165ef9;
+}
+
+.scrollbar-custom:hover::-webkit-scrollbar-thumb:hover {
+  background-color: #0c35ea;
+}
+
+.scrollbar-custom {
+  scrollbar-color: rgba(22, 113, 249, 0) transparent;
+}
+
+.scrollbar-custom:hover,
+.scrollbar-custom.scrolling {
+  scrollbar-color: #1665f9 transparent;
 }
 
 @media (min-width: 1280px) {
