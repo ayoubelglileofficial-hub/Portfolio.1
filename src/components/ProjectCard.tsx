@@ -22,7 +22,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       rel="noopener noreferrer"
       className="block group"
     >
-      <div className="rounded-xl border w-80 bg-card text-card-foreground overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+      <div className="rounded-xl border w-full sm:max-w-sm bg-card text-card-foreground overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
         <div className="h-48 shrink-0 overflow-hidden bg-muted">
           <img
             src={imgSrc}
