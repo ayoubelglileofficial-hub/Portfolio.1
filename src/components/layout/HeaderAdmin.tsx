@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 import {
-    Menu, X, Bell, ChevronDown, UserIcon, Settings, LogOut, Zap, Layers, Briefcase, GraduationCap, Mail
+    Menu, X,  ChevronDown, UserIcon, Settings, LogOut, Zap, Layers, Briefcase, GraduationCap, Mail
 } from "lucide-react"
 
 const mainLinks = [
@@ -118,20 +118,6 @@ export default function HeaderAdmin() {
 
                     {/* Right Side - User Menu & Notifications */}
                     <div className="flex items-center gap-3">
-                        {/* Notification Bell */}
-                        {/* <button className="relative p-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-colors">
-                            <Bell className="w-5 h-5" />
-                            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-                        </button> */}
-
-                        {/* Logout button */}
-                        {/* <button
-                            onClick={handleLogout}
-                            className="hidden md:inline-flex items-center gap-2 px-3 py-2 rounded-lg text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors"
-                        >
-                            <LogOut className="w-4 h-4" />
-                            <span className="text-sm">Logout</span>
-                        </button> */}
 
                         {/* User Menu */}
                         <div className="relative user-menu">

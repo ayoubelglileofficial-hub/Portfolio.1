@@ -3,16 +3,11 @@ export const revalidate = 0;
 
 import connectDB from '@/lib/mongodb';
 import Profile from '@/models/Profile';
-import Profil from '@/components/layout/Profil';
-import ProfileVisibilityToggle from '@/components/ProfileVisibilityToggle';
-import ProfileForm from '@/components/layout/ProfileModal';
-import { getSessionData } from '@/lib/auth';
 import HomePage from './HomePage/page';
 import Skills from './Skills/page';
-import Projects from './Projects/page';
 import ServicesPage from './Services/page';
-import Experience from './About/page';
 import ContactSection from '@/components/layout/ContactSection';
+import Projects from './projects/page';
 
 export default async function Home() {
   await connectDB();

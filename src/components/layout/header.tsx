@@ -144,28 +144,6 @@ export function Header({ logoUrl }: HeaderProps) {
             </div>
           </nav>
 
-          {/* Desktop Actions */}
-          {/* <div className="hidden md:flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="rounded-full"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-yellow-500" />
-              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 dark:rotate-0 dark:scale-100 text-blue-500" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-            <Link href="#Contact">
-              <Button
-                size="sm"
-                className="rounded-full px-6 bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white"
-              >
-                Hire Me
-              </Button>
-            </Link>
-          </div> */}
-
           {/* Mobile */}
           <div className="lg:hidden flex items-center gap-3 font-mono">
             <Button
