@@ -17,6 +17,8 @@ import { VscVscode } from "react-icons/vsc";
 import { BsGitlab } from "react-icons/bs";
 import { SiKubernetes } from "react-icons/si";
 import { RiClaudeFill } from "react-icons/ri";
+import { VscAzureDevops } from "react-icons/vsc";
+
 import {
   SiGraphql, SiRedis, SiJest, SiCypress, SiNginx, SiPrisma,
   SiJenkins, SiTerraform, SiGooglecloud, SiVercel,
@@ -57,6 +59,8 @@ export const skillIconMap: Record<string, SkillIconEntry> = {
   vscode: { icon: VscVscode, color: "#007ACC" },
   gitlab: { icon: BsGitlab, color: "#FC6D26" },
   kubernetes: { icon: SiKubernetes, color: "#326CE5" },
+  DevOps: { icon: VscAzureDevops, color: "#F05032" },
+  "CI/CD": { icon: Workflow, color: "#4B5563" },
   claude: { icon: RiClaudeFill, color: "#FFA500" },
   stripe: { icon: SiStripe, color: "#635BFF" },
   "framer-motion": { icon: Play, color: "#0055FF" },

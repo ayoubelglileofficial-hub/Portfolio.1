@@ -37,6 +37,12 @@ const collections: {
     ],
   },
   {
+    name: 'certifications',
+    indexes: [
+      { spec: { order_index: 1 } },
+    ],
+  },
+  {
     name: 'projects',
     indexes: [
       // slug index was removed from the schema — no longer created here
