@@ -11,6 +11,7 @@ import HomePage from './HomePage/page';
 import Skills from './Skills/page';
 import Projects from './Projects/page';
 import ServicesPage from './Services/page';
+import Experience from './Experience/page';
 import ContactSection from '@/components/layout/ContactSection';
 
 export default async function Home() {
